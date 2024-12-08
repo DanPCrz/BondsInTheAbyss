@@ -741,15 +741,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7120704102452588284}
-  - component: {fileID: 256114205151459869}
   - component: {fileID: 7696464927019522072}
-  - component: {fileID: 1101259918026342106}
-  - component: {fileID: -2781264687962904048}
-  - component: {fileID: 2552112213280263943}
-  - component: {fileID: 1282151398710120527}
-  - component: {fileID: -147830953145454923}
-  - component: {fileID: -8598265228437247077}
-  - component: {fileID: -7250435515731550832}
+  - component: {fileID: 8314103458252508923}
+  - component: {fileID: -1450650132985857357}
+  - component: {fileID: -6657089978839079613}
+  - component: {fileID: -1118463320311716468}
+  - component: {fileID: 7645216318214863911}
+  - component: {fileID: -9159040577538113309}
+  - component: {fileID: -4497349228162036233}
+  - component: {fileID: -2631704715909598478}
+  - component: {fileID: 7018305079788790244}
   m_Layer: 0
   m_Name: Aldric
   m_TagString: Untagged
@@ -766,7 +767,7 @@ Transform:
   m_GameObject: {fileID: 1325400231904315822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 63.10468, y: 2.0163882, z: 28.029106}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -775,7 +776,29 @@ Transform:
   - {fileID: 3900276575415161923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &256114205151459869
+--- !u!95 &7696464927019522072
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325400231904315822}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: f68b1433a5cb56c41b71068093e2a7ea, type: 3}
+  m_Controller: {fileID: 9100000, guid: d86d9bdbbf6e1f44aa6aae3208043189, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8314103458252508923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -787,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3127451198
+  GlobalObjectIdHash: 4006911500
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -800,29 +823,7 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!95 &7696464927019522072
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325400231904315822}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 529eb594a7f5d8247a236476ebfc2d89, type: 3}
-  m_Controller: {fileID: 9100000, guid: d86d9bdbbf6e1f44aa6aae3208043189, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1101259918026342106
+--- !u!114 &-1450650132985857357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -834,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb1d64a47746b442982380c89790844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2781264687962904048
+--- !u!114 &-6657089978839079613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -852,7 +853,7 @@ MonoBehaviour:
   runningSpeed: 5
   walkingSpeed: 2
   rotationSpeed: 15
---- !u!114 &2552112213280263943
+--- !u!114 &-1118463320311716468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -874,7 +875,20 @@ MonoBehaviour:
   canMove: 1
   playerAnimationManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
---- !u!114 &1282151398710120527
+--- !u!114 &7645216318214863911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325400231904315822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70f13274b191df44aab6c7d89a98600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startGameAsClient: 0
+--- !u!114 &-9159040577538113309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -900,7 +914,7 @@ MonoBehaviour:
     m_InternalValue: 0
   moveAmount:
     m_InternalValue: 0
---- !u!114 &-147830953145454923
+--- !u!114 &-4497349228162036233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -912,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079633bca55bb7648b7e17d295f188e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!143 &-8598265228437247077
+--- !u!143 &-2631704715909598478
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -937,7 +951,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.88, z: 0}
---- !u!82 &-7250435515731550832
+--- !u!82 &7018305079788790244
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -994,7 +1008,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

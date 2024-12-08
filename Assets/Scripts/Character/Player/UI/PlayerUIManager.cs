@@ -5,7 +5,7 @@ public class PlayerUIManager : MonoBehaviour
 {
     public static PlayerUIManager instance;
     [Header("Network Join")]
-    [SerializeField] bool startGameAsClient;
+    [SerializeField] public bool startGameAsClient;
 
     private void Awake()
     {

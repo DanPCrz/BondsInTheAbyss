@@ -1,10 +1,13 @@
 using UnityEngine;
 using Unity.Netcode;
+using System;
 
 public class CharacterNetWorkManager : NetworkBehaviour
 {
+    public static CharacterNetWorkManager instance;
 
-
+    public NetworkList<PlayerStruct> playerStruct;
+    public EventHandler OnPlayerDataNetworkListChanged;
 
     CharacterManager character;
     [Header("Position")]
@@ -32,8 +35,34 @@ public class CharacterNetWorkManager : NetworkBehaviour
 
     protected virtual void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         character = GetComponent<CharacterManager>();
+
+        playerStruct = new NetworkList<PlayerStruct>();
+        //playerStruct.OnListChanged += PlayerStruct_OnListChanged;
     }
+    //private void PlayerStruct_OnListChanged(NetworkListEvent<PlayerStruct> changeEvent)
+    //{
+    //    OnPlayerDataNetworkListChanged?.Invoke(this, EventArgs.Empty);
+    //}
+
+    //public void ListenCallback()
+    //{
+    //    NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientConnectedCallback;
+    //}
+
+    //public void NetworkManager_OnClientConnectedCallback(ulong clientId)
+    //{
+    //    playerStruct.Add(new PlayerStruct { clientID = clientId, });
+    //}
 
     [ServerRpc]
     public void NotifyServerOfActionAnimationServerRpc(ulong clientID, string animationID, bool applyRootMotion)
@@ -59,5 +88,10 @@ public class CharacterNetWorkManager : NetworkBehaviour
     private void PerformActionAnimationFromServer(string animationID, bool applyRootMotion)
     {
         character.animator.CrossFade(animationID, 0.2f);
+    }
+
+    public bool IsPlayerIndexConnected(int playerIndex)
+    {
+        return playerIndex < playerStruct.Count;
     }
 }

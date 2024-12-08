@@ -750,6 +750,7 @@ GameObject:
   - component: {fileID: 4680449428785493874}
   - component: {fileID: 5466183385276076101}
   - component: {fileID: -5290383896718636552}
+  - component: {fileID: -8331646298631513189}
   m_Layer: 0
   m_Name: Lyran
   m_TagString: Untagged
@@ -1034,6 +1035,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8331646298631513189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163995711733392679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 701cd9d853305284e8d4dce9b5762a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIndex: 0
 --- !u!1 &2595771228240792958
 GameObject:
   m_ObjectHideFlags: 0
