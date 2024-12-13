@@ -4,9 +4,11 @@ using Unity.Netcode;
 public class PlayerUIManager : MonoBehaviour
 {
     public static PlayerUIManager instance;
+
     [Header("Network Join")]
     [SerializeField] bool startGameAsClient;
 
+    [HideInInspector] public PlayerHUDManager playerHUDManager;
     private void Awake()
     {
         if (instance == null)
@@ -17,6 +19,8 @@ public class PlayerUIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        playerHUDManager = GetComponentInChildren<PlayerHUDManager>();
     }
 
     private void Start()
