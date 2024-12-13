@@ -15,6 +15,7 @@ public class PlayerInputManager : MonoBehaviour
 
     [Header("Action Input")]
     [SerializeField] bool dodgeInput = false;
+    [SerializeField] bool sprintInput = false;
 
     [Header("Camera Input")]
     [SerializeField] Vector2 cameraInput;
@@ -61,6 +62,8 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
+            playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
+            playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;   
         }
 
         playerControls.Enable();
@@ -96,7 +99,9 @@ public class PlayerInputManager : MonoBehaviour
         HandlePlayerInput();
         HandleCameraInput();
         HandleDodgeInput();
+        HandleSprintInput();
     }
+
     private void HandlePlayerInput()
     {
         horizontalInput = movementInput.x;
@@ -116,7 +121,7 @@ public class PlayerInputManager : MonoBehaviour
         if (player == null)
             return;
 
-        player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount);
+        player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
     }
 
     private void HandleCameraInput()
@@ -131,6 +136,18 @@ public class PlayerInputManager : MonoBehaviour
         {
             dodgeInput = false;
             player.playerLocomotionManager.AttemptDodge();
+        }
+    }
+
+    private void HandleSprintInput()
+    {
+        if (sprintInput)
+        {
+            player.playerLocomotionManager.HandleSprinting();
+        }
+        else
+        {
+            player.playerNetworkManager.isSprinting.Value = false;
         }
     }
 }
