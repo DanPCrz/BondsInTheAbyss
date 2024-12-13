@@ -4,12 +4,14 @@ public class PlayerManager : CharacterManager
 {
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
+    [HideInInspector] public PlayerNetworkManager playerNetworkManager;
 
     protected override void Awake()
     {
         base.Awake();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerAnimationManager = GetComponent<PlayerAnimationManager>();
+        playerNetworkManager = GetComponent<PlayerNetworkManager>();
     }
 
     protected override void Update()
