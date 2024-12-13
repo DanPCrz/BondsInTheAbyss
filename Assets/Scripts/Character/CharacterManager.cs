@@ -5,8 +5,7 @@ public class CharacterManager : NetworkBehaviour
 {
     [HideInInspector] public CharacterController characterController;
     [HideInInspector] public Animator animator;
-
-    [HideInInspector] public CharacterNetWorkManager characterNetWorkManager;
+    [HideInInspector] public CharacterNetworkManager characterNetworkManager;
 
     [Header("Flags")]
     public bool isPerformingAction = false;
@@ -17,29 +16,28 @@ public class CharacterManager : NetworkBehaviour
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);
-
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        characterNetWorkManager = GetComponent<CharacterNetWorkManager>();
+        characterNetworkManager = GetComponent<CharacterNetworkManager>();
     }
 
     protected virtual void Update()
     {
         if (IsOwner)
         {
-            characterNetWorkManager.networkPosition.Value = transform.position;
-            characterNetWorkManager.networkRotation.Value = transform.rotation;
+            characterNetworkManager.networkPosition.Value = transform.position;
+            characterNetworkManager.networkRotation.Value = transform.rotation;
         }
         else
         {
             transform.position = Vector3.SmoothDamp(transform.position, 
-                                                    characterNetWorkManager.networkPosition.Value, 
-                                                    ref characterNetWorkManager.networkPositionVelocity, 
-                                                    characterNetWorkManager.networkPositionSmoothTime);
+                                                    characterNetworkManager.networkPosition.Value, 
+                                                    ref characterNetworkManager.networkPositionVelocity, 
+                                                    characterNetworkManager.networkPositionSmoothTime);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, 
-                                                   characterNetWorkManager.networkRotation.Value, 
-                                                   characterNetWorkManager.networkRotationSmoothTime);
+                                                  characterNetworkManager.networkRotation.Value, 
+                                                  characterNetworkManager.networkRotationSmoothTime);
         }
     }
 

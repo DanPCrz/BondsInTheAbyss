@@ -4,9 +4,7 @@ using UnityEngine.SceneManagement;
 public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager instance;
-
     public PlayerManager player;
-
     PlayerControls playerControls;
 
     [Header("Player Input")]
@@ -23,7 +21,6 @@ public class PlayerInputManager : MonoBehaviour
     public float cameraHorizontalInput;
     public float cameraVerticalInput;
 
-
     private void Awake()
     {
         if (instance == null)
@@ -39,8 +36,8 @@ public class PlayerInputManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        SceneManager.activeSceneChanged += OnSceneChange;
         instance.enabled = false;
+        SceneManager.activeSceneChanged += OnSceneChange;
     }
 
     private void OnSceneChange(Scene oldScene, Scene newScene)
@@ -60,6 +57,7 @@ public class PlayerInputManager : MonoBehaviour
         if (playerControls == null)
         {
             playerControls = new PlayerControls();
+
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
@@ -110,10 +108,13 @@ public class PlayerInputManager : MonoBehaviour
         {
             moveAmount = 0.5f;
         }
-        else if (moveAmount > 0.5)
+        else if (moveAmount > 0.5 && moveAmount <= 1)
         {
             moveAmount = 1;
         }
+
+        if (player == null)
+            return;
 
         player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount);
     }

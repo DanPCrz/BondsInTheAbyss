@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -8,7 +8,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] Transform cameraPivotTransform;
 
     [Header("Camera Settings")]
-    private float  cameraSmoothSpeed = 1;
+    private float cameraSmoothSpeed = 0.1f;
     [SerializeField] float leftRightRotationSpeed = 220;
     [SerializeField] float upDownRotationSpeed = 150;
     [SerializeField] float minPivot = -30;
@@ -63,8 +63,8 @@ public class PlayerCamera : MonoBehaviour
 
     private void HandleRotations()
     {
-        leftRightLookAngle += (PlayerInputManager.instance.cameraHorizontalInput * leftRightRotationSpeed) * Time.deltaTime;
-        upDownLookAngle += (PlayerInputManager.instance.cameraVerticalInput * upDownRotationSpeed) * Time.deltaTime;
+        leftRightLookAngle += PlayerInputManager.instance.cameraHorizontalInput * leftRightRotationSpeed * Time.deltaTime;
+        upDownLookAngle -= PlayerInputManager.instance.cameraVerticalInput * upDownRotationSpeed * Time.deltaTime;
         upDownLookAngle = Mathf.Clamp(upDownLookAngle, minPivot, maxPivot);
 
         Vector3 cameraRotation;

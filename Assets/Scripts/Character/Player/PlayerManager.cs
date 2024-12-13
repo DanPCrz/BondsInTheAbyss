@@ -1,14 +1,9 @@
-using TMPro;
 using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
-
-    
-
-
 
     protected override void Awake()
     {
@@ -20,8 +15,10 @@ public class PlayerManager : CharacterManager
     protected override void Update()
     {
         base.Update();
+
         if (!IsOwner)
             return;
+        
         playerLocomotionManager.HandleAllMovement();
     }
 
@@ -29,13 +26,16 @@ public class PlayerManager : CharacterManager
     {
         if (!IsOwner)
             return;
+
         base.LateUpdate();
 
         PlayerCamera.instance.HandleAllCameraActions();
     }
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+            
         if (IsOwner)
         {
             PlayerCamera.instance.player = this;

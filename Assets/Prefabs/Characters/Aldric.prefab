@@ -741,12 +741,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7120704102452588284}
-  - component: {fileID: 256114205151459869}
   - component: {fileID: 7696464927019522072}
+  - component: {fileID: 256114205151459869}
+  - component: {fileID: 1282151398710120527}
   - component: {fileID: 1101259918026342106}
   - component: {fileID: -2781264687962904048}
   - component: {fileID: 2552112213280263943}
-  - component: {fileID: 1282151398710120527}
   - component: {fileID: -147830953145454923}
   - component: {fileID: -8598265228437247077}
   - component: {fileID: -7250435515731550832}
@@ -775,6 +775,28 @@ Transform:
   - {fileID: 3900276575415161923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &7696464927019522072
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325400231904315822}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 529eb594a7f5d8247a236476ebfc2d89, type: 3}
+  m_Controller: {fileID: 9100000, guid: d86d9bdbbf6e1f44aa6aae3208043189, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &256114205151459869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,28 +822,32 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!95 &7696464927019522072
-Animator:
-  serializedVersion: 7
+--- !u!114 &1282151398710120527
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325400231904315822}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 529eb594a7f5d8247a236476ebfc2d89, type: 3}
-  m_Controller: {fileID: 9100000, guid: d86d9bdbbf6e1f44aa6aae3208043189, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2313ac68c90716a459866271e29432e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  networkPosition:
+    m_InternalValue: {x: 0, y: 0, z: 0}
+  networkRotation:
+    m_InternalValue: {x: 0, y: 0, z: 0, w: 1}
+  networkPositionVelocity: {x: 0, y: 0, z: 0}
+  networkPositionSmoothTime: 0.1
+  networkRotationSmoothTime: 0.1
+  horizontalMovement:
+    m_InternalValue: 0
+  verticalMovement:
+    m_InternalValue: 0
+  moveAmount:
+    m_InternalValue: 0
 --- !u!114 &1101259918026342106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,39 +893,13 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   characterController: {fileID: 0}
   animator: {fileID: 0}
-  characterNetWorkManager: {fileID: 0}
+  characterNetworkManager: {fileID: 0}
   isPerformingAction: 0
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
   playerAnimationManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
---- !u!114 &1282151398710120527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325400231904315822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2313ac68c90716a459866271e29432e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  networkPosition:
-    m_InternalValue: {x: 0, y: 0, z: 0}
-  networkRotation:
-    m_InternalValue: {x: 0, y: 0, z: 0, w: 1}
-  networkPositionVelocity: {x: 0, y: 0, z: 0}
-  networkPositionSmoothTime: 0.1
-  networkRotationSmoothTime: 0.1
-  horizontalMovement:
-    m_InternalValue: 0
-  verticalMovement:
-    m_InternalValue: 0
-  moveAmount:
-    m_InternalValue: 0
 --- !u!114 &-147830953145454923
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterLocomotionManger : MonoBehaviour
+public class CharacterLocomotionManager : MonoBehaviour
 {
     protected virtual void Awake()
     {

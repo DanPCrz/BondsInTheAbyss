@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class PlayerLocomotionManager : CharacterLocomotionManger
+public class PlayerLocomotionManager : CharacterLocomotionManager
 {
     PlayerManager player;
 
@@ -31,19 +30,20 @@ public class PlayerLocomotionManager : CharacterLocomotionManger
 
         if (player.IsOwner)
         {
-            player.characterNetWorkManager.verticalMovement.Value = verticalMovement;
-            player.characterNetWorkManager.horizontalMovement.Value = horizontalMovement;
-            player.characterNetWorkManager.moveAmount.Value = moveAmount;
+            player.characterNetworkManager.verticalMovement.Value = verticalMovement;
+            player.characterNetworkManager.horizontalMovement.Value = horizontalMovement;
+            player.characterNetworkManager.moveAmount.Value = moveAmount;
         }
         else
         {
-            verticalMovement = player.characterNetWorkManager.verticalMovement.Value;
-            horizontalMovement = player.characterNetWorkManager.horizontalMovement.Value;
-            moveAmount = player.characterNetWorkManager.moveAmount.Value;
+            verticalMovement = player.characterNetworkManager.verticalMovement.Value;
+            horizontalMovement = player.characterNetworkManager.horizontalMovement.Value;
+            moveAmount = player.characterNetworkManager.moveAmount.Value;
 
             player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount);
         }
     }
+
     public void HandleAllMovement()
     {
         HandleGroundedMovement();
