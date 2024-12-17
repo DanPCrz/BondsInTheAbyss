@@ -747,9 +747,10 @@ GameObject:
   - component: {fileID: -4855663656147652459}
   - component: {fileID: 8076515174296999640}
   - component: {fileID: 4680449428785493874}
+  - component: {fileID: -7870693843311683969}
+  - component: {fileID: 996068844063397898}
   - component: {fileID: 5466183385276076101}
   - component: {fileID: -5290383896718636552}
-  - component: {fileID: -7870693843311683969}
   m_Layer: 0
   m_Name: Lyran
   m_TagString: Untagged
@@ -849,6 +850,7 @@ MonoBehaviour:
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
+  SprintingSpeed: 6.5
   runningSpeed: 5
   walkingSpeed: 2
   rotationSpeed: 15
@@ -874,6 +876,7 @@ MonoBehaviour:
   canMove: 1
   playerAnimationManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
+  playerNetworkManager: {fileID: 0}
 --- !u!114 &4680449428785493874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +887,46 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 079633bca55bb7648b7e17d295f188e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7870693843311683969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163995711733392679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2313ac68c90716a459866271e29432e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  networkPosition:
+    m_InternalValue: {x: 0, y: 0, z: 0}
+  networkRotation:
+    m_InternalValue: {x: 0, y: 0, z: 0, w: 1}
+  networkPositionVelocity: {x: 0, y: 0, z: 0}
+  networkPositionSmoothTime: 0.1
+  networkRotationSmoothTime: 0.1
+  verticalMovement:
+    m_InternalValue: 0
+  horizontalMovement:
+    m_InternalValue: 0
+  moveAmount:
+    m_InternalValue: 0
+  isSprinting:
+    m_InternalValue: 0
+--- !u!114 &996068844063397898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163995711733392679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866367c0b9b325f45a1287f823e2c73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!143 &5466183385276076101
@@ -1008,32 +1051,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-7870693843311683969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2163995711733392679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2313ac68c90716a459866271e29432e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  networkPosition:
-    m_InternalValue: {x: 0, y: 0, z: 0}
-  networkRotation:
-    m_InternalValue: {x: 0, y: 0, z: 0, w: 1}
-  networkPositionVelocity: {x: 0, y: 0, z: 0}
-  networkPositionSmoothTime: 0.1
-  networkRotationSmoothTime: 0.1
-  horizontalMovement:
-    m_InternalValue: 0
-  verticalMovement:
-    m_InternalValue: 0
-  moveAmount:
-    m_InternalValue: 0
 --- !u!1 &2595771228240792958
 GameObject:
   m_ObjectHideFlags: 0
