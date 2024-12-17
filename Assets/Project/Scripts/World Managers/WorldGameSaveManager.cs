@@ -1,11 +1,16 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class WorldGameSaveManager : MonoBehaviour
 {
     public static WorldGameSaveManager instance;
-    [SerializeField] PlayerManager player;
+    public PlayerManager player;
+
+    [Header("Buttons")]
+    [SerializeField] Button onlineButton;
 
     [Header("Save/Load")]
     [SerializeField] public bool saveGame;
@@ -15,17 +20,17 @@ public class WorldGameSaveManager : MonoBehaviour
     [SerializeField] int WorldSceneIndex = 1;
 
     [Header("Save Data Writer")]
-    private SaveDataFileWrite saveFileDataWrite;
+    private SaveDataFileWrite saveDataFileWrite;
 
     [Header("Current Slot")]
     public SaveSlot currentSaveSlotBeingUsed;
-    public CharacterSaveData currentSlotData;
+    public SaveSlotData currentSlotData;
     private string saveFileName;
 
     [Header("Save Slots")]
-    public CharacterSaveData saveSlot1;
-    public CharacterSaveData saveSlot2;
-    public CharacterSaveData saveSlot3;
+    public SaveSlotData saveSlot1;
+    public SaveSlotData saveSlot2;
+    public SaveSlotData saveSlot3;
 
     private void Awake()
     {
@@ -42,6 +47,7 @@ public class WorldGameSaveManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+        LoadAllSaveSlots();
     }
 
     private void Update()
@@ -59,55 +65,123 @@ public class WorldGameSaveManager : MonoBehaviour
         }
     }
 
-    private void DecideSaveFileNameBasedOnSlotBeingUsed()
+    public string DecideSaveFileNameBasedOnSlotBeingUsed(SaveSlot saveSlot)
     {
-        switch (currentSaveSlotBeingUsed)
+        string fileName="";
+
+        switch (saveSlot)
         {
             case SaveSlot.Slot1:
-                currentSlotData = saveSlot1;
-                saveFileName = "saveSlot1";
+                fileName = "saveSlot1.json";
                 break;
             case SaveSlot.Slot2:
-                currentSlotData = saveSlot2;
-                saveFileName = "saveSlot2";
+                fileName = "saveSlot2.json";
                 break;
             case SaveSlot.Slot3:
-                currentSlotData = saveSlot3;
-                saveFileName = "saveSlot3";
+                fileName = "saveSlot3.json";
+                break;
+            default:
                 break;
         }
+        return fileName;
     }
+
+    public void CheckForFreeSlot()
+    {
+        saveDataFileWrite = new SaveDataFileWrite();
+        saveDataFileWrite.saveDataDirectoryPath = Application.persistentDataPath;
+
+        saveDataFileWrite.savedDataFileName = DecideSaveFileNameBasedOnSlotBeingUsed(SaveSlot.Slot1);
+        if (!saveDataFileWrite.CheckToSeeIfSaveDataFileExists())
+        {
+            currentSaveSlotBeingUsed = SaveSlot.Slot1;
+            currentSlotData = new SaveSlotData();
+            onlineButton.Select();
+            return;
+        }
+
+        saveDataFileWrite.savedDataFileName = DecideSaveFileNameBasedOnSlotBeingUsed(SaveSlot.Slot2);
+        if (!saveDataFileWrite.CheckToSeeIfSaveDataFileExists())
+        {
+            currentSaveSlotBeingUsed = SaveSlot.Slot2;
+            currentSlotData = new SaveSlotData();
+            onlineButton.Select();
+            return;
+        }
+
+        saveDataFileWrite.savedDataFileName = DecideSaveFileNameBasedOnSlotBeingUsed(SaveSlot.Slot3);
+        if (!saveDataFileWrite.CheckToSeeIfSaveDataFileExists())
+        {
+            currentSaveSlotBeingUsed = SaveSlot.Slot3;
+            currentSlotData = new SaveSlotData();
+            onlineButton.Select();
+            return;
+        }
+
+        TitleScreenManager.instance.NoFreeSaveSlotsPopup();
+    }
+
 
     public void CreateNewGame()
     {
-        DecideSaveFileNameBasedOnSlotBeingUsed();
-        currentSlotData = new CharacterSaveData();
+        saveFileName = DecideSaveFileNameBasedOnSlotBeingUsed(currentSaveSlotBeingUsed);
+        StartCoroutine(LoadWorldScene());
     }
 
     public void LoadGame() 
     {
-        DecideSaveFileNameBasedOnSlotBeingUsed();
-        saveFileDataWrite = new SaveDataFileWrite();
-        saveFileDataWrite.saveDataDirectoryPath = Application.persistentDataPath;
-        saveFileDataWrite.savedDataFileName = saveFileName;
-        currentSlotData = saveFileDataWrite.LoadSaveFile();
+        saveFileName = DecideSaveFileNameBasedOnSlotBeingUsed(currentSaveSlotBeingUsed);
+        saveDataFileWrite = new SaveDataFileWrite();
+        saveDataFileWrite.saveDataDirectoryPath = Application.persistentDataPath;
+        saveDataFileWrite.savedDataFileName = saveFileName;
+        currentSlotData = saveDataFileWrite.LoadSaveFile();
 
         StartCoroutine(LoadWorldScene());
     }
 
     public void SaveGame()
     {
-        DecideSaveFileNameBasedOnSlotBeingUsed();
-        saveFileDataWrite = new SaveDataFileWrite();
-        saveFileDataWrite.saveDataDirectoryPath = Application.persistentDataPath;
-        saveFileDataWrite.savedDataFileName = saveFileName;
+        saveFileName = DecideSaveFileNameBasedOnSlotBeingUsed(currentSaveSlotBeingUsed);
+        saveDataFileWrite = new SaveDataFileWrite();
+        saveDataFileWrite.saveDataDirectoryPath = Application.persistentDataPath;
+        saveDataFileWrite.savedDataFileName = saveFileName;
         player.SaveGameToCurrentSlot(ref currentSlotData);
-        saveFileDataWrite.CreateNewSaveFile(currentSlotData);
+        saveDataFileWrite.CreateNewSaveFile(currentSlotData);
+    }
+
+    public void DeleteGame(SaveSlot saveSlot)
+    {
+        saveDataFileWrite = new SaveDataFileWrite();
+        saveDataFileWrite.saveDataDirectoryPath = Application.persistentDataPath;
+        saveDataFileWrite.savedDataFileName = DecideSaveFileNameBasedOnSlotBeingUsed(saveSlot);
+        saveDataFileWrite.DeleteSaveFile();
+    }
+
+    public void LoadAllSaveSlots()
+    {
+        saveDataFileWrite = new SaveDataFileWrite();
+        saveDataFileWrite.saveDataDirectoryPath = Application.persistentDataPath;
+
+        saveDataFileWrite.savedDataFileName = DecideSaveFileNameBasedOnSlotBeingUsed(SaveSlot.Slot1);
+        saveSlot1 = saveDataFileWrite.LoadSaveFile();
+
+        saveDataFileWrite.savedDataFileName = DecideSaveFileNameBasedOnSlotBeingUsed(SaveSlot.Slot2);
+        saveSlot2 = saveDataFileWrite.LoadSaveFile();
+
+        saveDataFileWrite.savedDataFileName = DecideSaveFileNameBasedOnSlotBeingUsed(SaveSlot.Slot3);
+        saveSlot3 = saveDataFileWrite.LoadSaveFile();
+    
     }
 
     public IEnumerator LoadWorldScene()
     {
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(WorldSceneIndex);
+        if (player == null)
+        {
+            Debug.LogError("PlayerManager not found! Unable to load game.");
+            yield break;   
+        }
+        player.LoadGameFromCurrentSlot(ref currentSlotData);
         yield return null;
     }
 

@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [System.Serializable]
-public class CharacterSaveData
+public class SaveSlotData
 {
-    [Header("Character Info")]
-    public string characterName;
+    [Header("Save Info")]
+    public string saveName = "player";
 
     [Header("Time Played")]
     public float secondsPlayed;

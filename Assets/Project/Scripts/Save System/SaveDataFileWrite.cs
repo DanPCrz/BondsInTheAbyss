@@ -4,7 +4,7 @@ using System.IO;
 
 public class SaveDataFileWrite
 {
-    public string saveDataDirectoryPath = "C:/Users/danye/Documents/BitA/Saves";
+    public string saveDataDirectoryPath = "";
     public string savedDataFileName = "";
 
     public bool CheckToSeeIfSaveDataFileExists()
@@ -24,12 +24,13 @@ public class SaveDataFileWrite
         File.Delete(Path.Combine(saveDataDirectoryPath, savedDataFileName)); 
     }
 
-    public void CreateNewSaveFile(CharacterSaveData characterData)
+    public void CreateNewSaveFile(SaveSlotData characterData)
     {
         string savePath = Path.Combine(saveDataDirectoryPath, savedDataFileName);
 
         try
-        {
+            {
+            Debug.Log("Trying to save");
             Directory.CreateDirectory(Path.GetDirectoryName(savePath));
             Debug.Log("File Saved at " + savePath);
             string dataToStore = JsonUtility.ToJson(characterData, true);
@@ -47,9 +48,9 @@ public class SaveDataFileWrite
         }
     }
 
-    public CharacterSaveData LoadSaveFile()
+    public SaveSlotData LoadSaveFile()
     {
-        CharacterSaveData characterData = null;
+        SaveSlotData saveData = null;
 
         string loadPath = Path.Combine(saveDataDirectoryPath, savedDataFileName);
 
@@ -65,13 +66,13 @@ public class SaveDataFileWrite
                         dataToLoad = reader.ReadToEnd();
                     }
                 }
-                characterData = JsonUtility.FromJson<CharacterSaveData>(dataToLoad);
+                saveData = JsonUtility.FromJson<SaveSlotData>(dataToLoad);
             }
             catch (Exception e)
             {
                 Debug.LogError("Error Loading File at " + loadPath + ". Game not loaded \n" + e);
             }
         }
-        return characterData;
+        return saveData;
     }
 }

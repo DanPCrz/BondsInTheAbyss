@@ -45,6 +45,7 @@ public class PlayerManager : CharacterManager
         {
             PlayerCamera.instance.player = this;
             PlayerInputManager.instance.player = this;
+            WorldGameSaveManager.instance.player = this;
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewStaminaValue;
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
 
@@ -55,18 +56,18 @@ public class PlayerManager : CharacterManager
         }
     }
 
-    public void SaveGameToCurrentSlot(ref CharacterSaveData currentSlotData)
+    public void SaveGameToCurrentSlot(ref SaveSlotData currentSlotData)
     {
-        currentSlotData.characterName = playerNetworkManager.playerName.Value.ToString();
+        currentSlotData.saveName = playerNetworkManager.playerName.Value.ToString();
         currentSlotData.xPosition = transform.position.x;
         currentSlotData.yPosition = transform.position.y;
         currentSlotData.zPosition = transform.position.z;
     }
 
-    public void LoadGameFromCurrentSlot(ref CharacterSaveData currentSlotData)
+    public void LoadGameFromCurrentSlot(ref SaveSlotData currentSlotData)
     {
-        playerNetworkManager.playerName.Value = currentSlotData.characterName;
+        playerNetworkManager.playerName.Value = currentSlotData.saveName;
         Vector3 myPosition = new Vector3(currentSlotData.xPosition, currentSlotData.yPosition, currentSlotData.zPosition);
-        transform.position = myPosition;
+        transform.position = myPosition; 
     }
 }

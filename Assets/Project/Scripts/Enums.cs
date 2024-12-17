@@ -9,5 +9,6 @@ public enum SaveSlot
 {
     Slot1,
     Slot2,
-    Slot3
+    Slot3,
+    NO_SLOT
 }   
