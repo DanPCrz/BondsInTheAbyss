@@ -4,10 +4,16 @@ using UnityEngine.UI;
 public class UIStatBar : MonoBehaviour
 {
     private Slider slider;
+    private RectTransform rectTransform;
+
+    [Header("Bar Options")]
+    [SerializeField] protected bool scaleBarLenghtWithStats = true;
+    [SerializeField] protected float widthScaleMultiplier = 1;
 
     protected virtual void Awake()
     {
         slider = GetComponent<Slider>();
+        rectTransform = GetComponent<RectTransform>();
     }
 
     public virtual void SetStat(int newValue)
@@ -19,5 +25,11 @@ public class UIStatBar : MonoBehaviour
     {
         slider.maxValue = maxValue;
         slider.value = maxValue;
+
+        if (scaleBarLenghtWithStats)
+        {
+            rectTransform.sizeDelta = new Vector2(maxValue * widthScaleMultiplier, rectTransform.sizeDelta.y);
+            PlayerUIManager.instance.playerHUDManager.RefreshHUD();
+        }
     }
 }

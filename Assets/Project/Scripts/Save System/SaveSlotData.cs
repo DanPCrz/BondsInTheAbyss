@@ -13,4 +13,12 @@ public class SaveSlotData
     public float xPosition;
     public float yPosition;
     public float zPosition;
+
+    [Header("Stats")]
+    public int currentHealth;
+    public float currentStamina;
+
+    [Header("Attributes")]
+    public int vitality;
+    public int endurance;
 }
