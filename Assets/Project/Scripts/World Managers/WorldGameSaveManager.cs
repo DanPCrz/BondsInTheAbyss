@@ -125,9 +125,18 @@ public class WorldGameSaveManager : MonoBehaviour
     public void CreateNewGame()
     {
         saveFileName = DecideSaveFileNameBasedOnSlotBeingUsed(currentSaveSlotBeingUsed);
+        player.playerNetworkManager.vitality.Value = 10;
+        player.playerNetworkManager.endurance.Value = 10;
+
+        SaveGame();
         StartCoroutine(LoadWorldScene());
     }
 
+    private void NewGame()
+    {
+        SaveGame();
+        StartCoroutine(LoadWorldScene());
+    }
     public void LoadGame() 
     {
         saveFileName = DecideSaveFileNameBasedOnSlotBeingUsed(currentSaveSlotBeingUsed);
