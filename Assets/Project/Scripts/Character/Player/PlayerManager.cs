@@ -4,12 +4,16 @@ using UnityEngine;
 public class PlayerManager : CharacterManager
 {
     [Header("Debug Menu")]
-    [SerializeField] bool respawnCharacter = false;
+    [SerializeField] bool reviveCharacter = false;
+    [SerializeField] bool switchRightWeapon = false;
 
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
     [HideInInspector] public PlayerNetworkManager playerNetworkManager;
     [HideInInspector] public PlayerStatsManager playerStatsManager;
+    [HideInInspector] public PlayerInventoryManager playerInventoryManager;
+    [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
+    [HideInInspector] public PlayerCombatManager playerCombatManager;
 
     protected override void Awake()
     {
@@ -18,6 +22,9 @@ public class PlayerManager : CharacterManager
         playerAnimationManager = GetComponent<PlayerAnimationManager>();
         playerNetworkManager = GetComponent<PlayerNetworkManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
+        playerInventoryManager = GetComponent<PlayerInventoryManager>();
+        playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
+        playerCombatManager = GetComponent<PlayerCombatManager>();
     }
 
     protected override void Update()
@@ -58,9 +65,17 @@ public class PlayerManager : CharacterManager
 
             playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewHealthValue;
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewStaminaValue;
-            playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;           
+            playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
         }
         playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
+        playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
+        playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+
+        if (IsOwner && !IsServer)
+        {
+            LoadGameFromCurrentSlot(ref WorldGameSaveManager.instance.currentSlotData);
+        }
     }
 
     public override IEnumerator ProcessDeathEvent(bool mannualySelectDeathAnimation = false)
@@ -79,7 +94,8 @@ public class PlayerManager : CharacterManager
 
         if (IsOwner)
         {
-            playerNetworkManager.currentHealth.Value = playerNetworkManager.maxHealth.Value;
+            isDowned.Value = false;
+            playerNetworkManager.currentHealth.Value = playerNetworkManager.maxHealth.Value / 5;
             playerNetworkManager.currentStamina.Value = playerNetworkManager.maxStamina.Value;
 
             playerAnimationManager.PlayTargetAnimation("Get Up", false);
@@ -119,10 +135,16 @@ public class PlayerManager : CharacterManager
 
     private void DebugMenu()
     {
-        if (respawnCharacter)
+        if (reviveCharacter)
         {
-            respawnCharacter = false;
+            reviveCharacter = false;
             ReviveCharacter();
+        }
+
+        if (switchRightWeapon)
+        {
+            switchRightWeapon = false;
+            playerEquipmentManager.SwitchRightWeapon();
         }
     }
 }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6efddb071453094d8b00c41503d04fc, type: 3}
+  m_Name: Macuahuitl
+  m_EditorClassIdentifier: 
+  itemName: Macuahuitl
+  itemID: 0
+  itemIcon: {fileID: 21300000, guid: c81d4a81ad4593a4897c811101d84661, type: 3}
+  itemDescription: Ancient sword which belonged to a legendary warrior from distant
+    lands
+  weaponModel: {fileID: 8848462957504735826, guid: 2e23677ff1bc3024bbc01ffcfea08231, type: 3}
+  strengthRequirement: 20
+  dexterityRequirement: 0
+  intelligenceRequirement: 0
+  faithRequirement: 10
+  physicalDamage: 150
+  magicDamage: 0
+  fireDamage: 0
+  lightningDamage: 0
+  poisonDamage: 0
+  poiseDamage: 30
+  baseStaminaCost: 25

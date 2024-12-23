@@ -1,10 +1,13 @@
 using UnityEngine;
 using Unity.Netcode;
 using System.Collections;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class CharacterManager : NetworkBehaviour
 {
     [Header("Status")]
+    public NetworkVariable<bool> isDowned = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isDead = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [HideInInspector] public CharacterController characterController;
@@ -16,7 +19,6 @@ public class CharacterManager : NetworkBehaviour
     [Header("Flags")]
     public bool isPerformingAction = false;
     public bool isGrounded = true;
-    public bool isJumping = false;
     public bool applyRootMotion = false;
     public bool canRotate = true;
     public bool canMove = true;
@@ -29,6 +31,11 @@ public class CharacterManager : NetworkBehaviour
         characterNetworkManager = GetComponent<CharacterNetworkManager>();
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
         characterAnimationManager = GetComponent<CharacterAnimationManager>();
+    }
+
+    protected virtual void Start()
+    {
+        IgnoreMyownColliders();
     }
 
     protected virtual void Update()
@@ -62,11 +69,11 @@ public class CharacterManager : NetworkBehaviour
         if (IsOwner)
         {
             characterNetworkManager.currentHealth.Value = 0;
-            isDead.Value = true;
+            isDowned.Value = true;
 
             if (!mannualySelectDeathAnimation)
             {
-                characterAnimationManager.PlayTargetAnimation("Downed", false);
+                characterAnimationManager.PlayTargetAnimation("Downed", false, false, true, true);
             }
         }
 
@@ -76,5 +83,28 @@ public class CharacterManager : NetworkBehaviour
     public virtual void ReviveCharacter()
     {
 
+    }
+
+    protected virtual void IgnoreMyownColliders()
+    {
+        Collider characterControllerCollider = GetComponent<Collider>();
+        Collider[] damageableCharacterColliders = GetComponentsInChildren<Collider>();
+
+        List<Collider> ignoreColliders = new List<Collider>();
+
+        foreach (var collider in damageableCharacterColliders)
+        {
+            ignoreColliders.Add(collider);
+        }
+
+        ignoreColliders.Add(characterControllerCollider);
+
+        foreach (var collider in ignoreColliders)
+        {
+            foreach (var otherCollider in ignoreColliders)
+            {
+                Physics.IgnoreCollision(collider, otherCollider, true);
+            }
+        }
     }
 }

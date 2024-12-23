@@ -33,7 +33,7 @@ public class CharacterLocomotionManager : MonoBehaviour
         }
         else
         {
-            if (!character.isJumping && !fallingVelocitySet)
+            if (!character.characterNetworkManager.isJumping.Value && !fallingVelocitySet)
             {
                 fallingVelocitySet = true;
                 yVelocity.y = fallStartYVelocity;
@@ -53,6 +53,6 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     protected void OnDrawGizmosSelected()
     {
-        Gizmos.DrawSphere(character.transform.position, checkSphereRadius);
+        //Gizmos.DrawSphere(character.transform.position, checkSphereRadius);
     }
 }

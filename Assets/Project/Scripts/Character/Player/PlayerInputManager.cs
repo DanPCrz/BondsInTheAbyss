@@ -17,6 +17,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool dodgeInput = false;
     [SerializeField] bool sprintInput = false;
     [SerializeField] bool jumpInput = false;
+    [SerializeField] bool rbInput = false;
 
     [Header("Camera Input")]
     [SerializeField] Vector2 cameraInput;
@@ -38,8 +39,13 @@ public class PlayerInputManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        instance.enabled = false;
         SceneManager.activeSceneChanged += OnSceneChange;
+        instance.enabled = false;
+
+        if (playerControls != null)
+        {
+            playerControls.Disable();
+        }
     }
 
     private void OnSceneChange(Scene oldScene, Scene newScene)
@@ -47,10 +53,18 @@ public class PlayerInputManager : MonoBehaviour
         if (newScene.buildIndex == WorldGameSaveManager.instance.GetWorldSceneIndex())
         {
             instance.enabled = true;
+            if (playerControls != null)
+            {
+                playerControls.Enable();
+            }
         }
         else
         {
             instance.enabled = false;
+            if (playerControls != null)
+            {
+                playerControls.Disable();
+            }
         }
     }
 
@@ -65,7 +79,8 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
-            playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;   
+            playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
+            playerControls.PlayerActions.RB.performed += i => rbInput = true;
         }
 
         playerControls.Enable();
@@ -103,6 +118,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleDodgeInput();
         HandleSprintInput();
         HandleJumpInput();
+        HandleRBInput();
     }
 
     private void HandlePlayerInput()
@@ -124,7 +140,7 @@ public class PlayerInputManager : MonoBehaviour
         if (player == null)
             return;
 
-        player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
+        player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
     }
 
     private void HandleCameraInput()
@@ -160,6 +176,16 @@ public class PlayerInputManager : MonoBehaviour
         {
             jumpInput = false;
             player.playerLocomotionManager.AttemptJump();
+        }
+    }
+
+    private void HandleRBInput()
+    {
+        if (rbInput)
+        {
+            rbInput = false;
+            player.playerNetworkManager.SetCharcterActionHand(true);
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.rbAction1H, player.playerInventoryManager.currentRightHandWeapon);
         }
     }
 }

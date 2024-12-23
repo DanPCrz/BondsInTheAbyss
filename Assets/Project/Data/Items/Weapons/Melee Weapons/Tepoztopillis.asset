@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6efddb071453094d8b00c41503d04fc, type: 3}
+  m_Name: Tepoztopillis
+  m_EditorClassIdentifier: 
+  itemName: Tepoztopillis
+  itemID: 2
+  itemIcon: {fileID: 21300000, guid: b65503465832db04982e0b097a8de568, type: 3}
+  itemDescription: Ancient spear which belonged to a legendary warrior from distant
+    lands
+  weaponModel: {fileID: 5271773568112446448, guid: d0b3c340e2f62934b8bac10fd6f10df4, type: 3}
+  strengthRequirement: 0
+  dexterityRequirement: 20
+  intelligenceRequirement: 10
+  faithRequirement: 0
+  physicalDamage: 40
+  magicalDamage: 0
+  fireDamage: 0
+  lightningDamage: 0
+  poisonDamage: 0
+  poiseDamage: 10
+  baseStaminaCost: 10
+  rbAction1H: {fileID: 11400000, guid: 4b50c5d9088ad1941a9cd7a8c1335425, type: 2}

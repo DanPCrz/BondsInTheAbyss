@@ -11,4 +11,10 @@ public enum SaveSlot
     Slot2,
     Slot3,
     NO_SLOT
-}   
+}
+
+public enum WeaponModelSlot
+{
+    RightHand,
+    LeftHand
+}
