@@ -65,16 +65,20 @@ public class PlayerManager : CharacterManager
 
             playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewHealthValue;
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewStaminaValue;
-            playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
+            playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;           
         }
         playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+    }
 
+    protected override void OnNetworkPostSpawn()
+    {
+        base.OnNetworkPostSpawn();
         if (IsOwner && !IsServer)
         {
-            LoadGameFromCurrentSlot(ref WorldGameSaveManager.instance.currentSlotData);
+            WorldGameSaveManager.instance.LoadGame();
         }
     }
 

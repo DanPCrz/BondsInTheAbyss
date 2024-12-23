@@ -29,4 +29,4 @@ MonoBehaviour:
   poisonDamage: 0
   poiseDamage: 10
   baseStaminaCost: 10
-  rbAction1H: {fileID: 11400000, guid: 4b50c5d9088ad1941a9cd7a8c1335425, type: 2}
+  rbAction1H: {fileID: 11400000, guid: 0697d038bc87ed84ebc0f24b92d8b992, type: 2}

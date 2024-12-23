@@ -132,11 +132,6 @@ public class WorldGameSaveManager : MonoBehaviour
         StartCoroutine(LoadWorldScene());
     }
 
-    private void NewGame()
-    {
-        SaveGame();
-        StartCoroutine(LoadWorldScene());
-    }
     public void LoadGame() 
     {
         saveFileName = DecideSaveFileNameBasedOnSlotBeingUsed(currentSaveSlotBeingUsed);

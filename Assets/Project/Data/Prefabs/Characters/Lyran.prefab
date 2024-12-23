@@ -1231,12 +1231,12 @@ MonoBehaviour:
   currentLeftHandWeapon: {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
-  - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
+  - {fileID: 11400000, guid: c241b6db8d615aa45923a7db2c798bca, type: 2}
   - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
   rightHandSlotIndex: 0
   weaponsInLeftHandSlots:
   - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
-  - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
+  - {fileID: 11400000, guid: c241b6db8d615aa45923a7db2c798bca, type: 2}
   - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
   leftHandSlotIndex: 0
 --- !u!114 &8266653803016603219
