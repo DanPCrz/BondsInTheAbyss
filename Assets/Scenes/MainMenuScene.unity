@@ -574,6 +574,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5341062052623428629, guid: 16fe013da4bbf7a41b6bba504ce3af10, type: 3}
+      propertyPath: NetworkConfig.PlayerPrefab
+      value: 
+      objectReference: {fileID: 8120803329597677439, guid: da4daac9c741ff54c8b31f9b88bd3b35, type: 3}
     - target: {fileID: 8974084980736129719, guid: 16fe013da4bbf7a41b6bba504ce3af10, type: 3}
       propertyPath: m_Name
       value: World Network Manager

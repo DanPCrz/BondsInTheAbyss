@@ -6,6 +6,7 @@ public class PlayerManager : CharacterManager
     [Header("Debug Menu")]
     [SerializeField] bool reviveCharacter = false;
     [SerializeField] bool switchRightWeapon = false;
+    [SerializeField] bool switchLeftWeapon = false;
 
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
@@ -149,6 +150,12 @@ public class PlayerManager : CharacterManager
         {
             switchRightWeapon = false;
             playerEquipmentManager.SwitchRightWeapon();
+        }
+
+        if (switchLeftWeapon)
+        {
+            switchLeftWeapon = false;
+            playerEquipmentManager.SwitchLeftWeapon();
         }
     }
 }
