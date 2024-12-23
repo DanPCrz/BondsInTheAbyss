@@ -124,7 +124,7 @@ public class WorldGameSaveManager : MonoBehaviour
 
     public void CreateNewGame()
     {
-        saveFileName = DecideSaveFileNameBasedOnSlotBeingUsed(currentSaveSlotBeingUsed);
+        //saveFileName = DecideSaveFileNameBasedOnSlotBeingUsed(currentSaveSlotBeingUsed);
         player.playerNetworkManager.vitality.Value = 10;
         player.playerNetworkManager.endurance.Value = 10;
 
