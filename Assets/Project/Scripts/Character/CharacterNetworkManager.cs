@@ -19,6 +19,7 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     [Header("Flags")]
     public NetworkVariable<bool> isSprinting = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isJumping = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Stats")]
     public NetworkVariable<float> currentStamina = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -73,6 +74,34 @@ public class CharacterNetworkManager : NetworkBehaviour
     }
 
     private void PerformActionAnimationFromServer(string animationID, bool applyRootMotion)
+    {
+        character.applyRootMotion = applyRootMotion;
+        character.animator.CrossFade(animationID, 0.2f);
+    }
+
+
+    [ServerRpc]
+    public void NotifyAttackActionAnimationToServerRpc(ulong clientID, string animationID, bool applyRootMotion)
+    {
+        if (IsServer)
+        {
+            PlayAttackActionAnimationForAllClientRpc(clientID, animationID, applyRootMotion);
+        }
+    }
+
+    [ClientRpc]
+    public void PlayAttackActionAnimationForAllClientRpc(ulong clientID, string animationID, bool applyRootMotion)
+    {
+        if (IsClient)
+        {
+            if (clientID != NetworkManager.Singleton.LocalClientId)
+            {
+                PerformAttackActionAnimationFromServer(animationID, applyRootMotion);
+            }
+        }
+    }
+
+    private void PerformAttackActionAnimationFromServer(string animationID, bool applyRootMotion)
     {
         character.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(animationID, 0.2f);

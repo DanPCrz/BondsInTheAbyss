@@ -14,6 +14,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     [SerializeField] float SprintingSpeed = 7f;
     [SerializeField] float runningSpeed = 4.5f;
     [SerializeField] float walkingSpeed = 2;
+    [SerializeField] float downedSpeed = 0.5f;
     [SerializeField] float rotationSpeed = 15;
     [SerializeField] int sprintingStaminaCost = 4;
 
@@ -50,7 +51,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             horizontalMovement = player.characterNetworkManager.horizontalMovement.Value;
             moveAmount = player.characterNetworkManager.moveAmount.Value;
 
-            player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
+            player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
         }
     }
 
@@ -85,6 +86,10 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             player.characterController.Move(moveDirection * SprintingSpeed * Time.deltaTime);
         }
+        else if (player.isDowned.Value)
+        {
+            player.characterController.Move(moveDirection * downedSpeed * Time.deltaTime);
+        }
         else
         {
             if (PlayerInputManager.instance.moveAmount > 0.5f)
@@ -100,7 +105,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleJumpingMovement()
     {
-        if (player.isJumping)
+        if (player.characterNetworkManager.isJumping.Value)
         {
            player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
         }
@@ -202,11 +207,11 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     public void AttemptJump()
     {
-        if (player.isPerformingAction || player.playerNetworkManager.currentStamina.Value <= 0 || player.isJumping || !player.isGrounded)
+        if (player.isPerformingAction || player.playerNetworkManager.currentStamina.Value <= 0 || player.characterNetworkManager.isJumping.Value || !player.isGrounded)
             return;
 
         player.playerAnimationManager.PlayTargetAnimation("Jump Start", false);
-        player.isJumping = true;
+        player.characterNetworkManager.isJumping.Value = true;
         player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
         jumpDirection = PlayerCamera.instance.cameraObject.transform.forward * PlayerInputManager.instance.verticalInput;
         jumpDirection += PlayerCamera.instance.cameraObject.transform.right * PlayerInputManager.instance.horizontalInput;
