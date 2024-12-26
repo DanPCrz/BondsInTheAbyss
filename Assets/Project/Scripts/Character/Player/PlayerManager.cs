@@ -26,6 +26,7 @@ public class PlayerManager : CharacterManager
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
+        
     }
 
     protected override void Update()
@@ -53,8 +54,7 @@ public class PlayerManager : CharacterManager
 
     public override void OnNetworkSpawn()
     {
-        base.OnNetworkSpawn();
-            
+        base.OnNetworkSpawn();            
         if (IsOwner)
         {
             PlayerCamera.instance.player = this;
@@ -69,10 +69,14 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;           
         }
         playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
+
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
-    }
+
+        playerNetworkManager.isLockedOn.OnValueChanged += playerNetworkManager.OnIsLockedOnChanged;
+        playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged += playerNetworkManager.OnTargetIDChange;    
+        }
 
     protected override void OnNetworkPostSpawn()
     {

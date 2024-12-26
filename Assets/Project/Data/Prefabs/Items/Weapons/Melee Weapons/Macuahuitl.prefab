@@ -1574,7 +1574,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
@@ -1597,6 +1597,7 @@ MonoBehaviour:
   lightningDamage: 0
   poisonDamage: 0
   characterCausingDamage: {fileID: 0}
+  lightAttack1Modifier: 0
 --- !u!1 &6077753953096526750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,7 +2477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db3a170bc74b4e46ade9cbfab92ab79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeDamageCollider: {fileID: 0}
+  meleeDamageCollider: {fileID: 7046645001060957507}
 --- !u!1 &9211424654734918322
 GameObject:
   m_ObjectHideFlags: 0

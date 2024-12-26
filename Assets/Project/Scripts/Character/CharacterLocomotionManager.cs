@@ -14,6 +14,9 @@ public class CharacterLocomotionManager : MonoBehaviour
     protected bool fallingVelocitySet = false;
     protected float airTimer = 0;
 
+    [Header("Flags")]
+    public bool isRolling = false;
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
@@ -53,6 +56,6 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     protected void OnDrawGizmosSelected()
     {
-        //Gizmos.DrawSphere(character.transform.position, checkSphereRadius);
+        Gizmos.DrawSphere(character.transform.position, checkSphereRadius);
     }
 }

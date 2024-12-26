@@ -7,10 +7,7 @@ public class LightAttackWeaponItemAction : WeaponItemAction
     {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
 
-        if (!playerPerformingAction.IsOwner)
-            return;
-
-        if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0)
+        if (!playerPerformingAction.IsOwner || playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0)
             return;
 
         PerformLightAttack(playerPerformingAction, weaponPerformingAction);
@@ -20,7 +17,7 @@ public class LightAttackWeaponItemAction : WeaponItemAction
     {
         if (playerPerformingAction.playerNetworkManager.isUsingRightHand.Value)
         {
-            playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation("Light Attack 1", true);
+            playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation(AttackType.LightAttack1 ,"Light Attack 1", true);
         }
         if (playerPerformingAction.playerNetworkManager.isUsingLeftHand.Value)
         {

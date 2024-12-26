@@ -4,6 +4,9 @@ public class WorldSoundFXManager : MonoBehaviour
 {
     public static WorldSoundFXManager instance;
 
+    [Header("Damage Sound FX")]
+    public AudioClip[] physicalDamageSFX;
+
     [Header("Actions Sound FX")]
     public AudioClip rollSFX;
 
@@ -22,5 +25,11 @@ public class WorldSoundFXManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+    }
+
+    public AudioClip ChooseRandomSFXFromArray(AudioClip[] sfxArray)
+    {
+        int index = Random.Range(0, sfxArray.Length);
+        return sfxArray[index];
     }
 }

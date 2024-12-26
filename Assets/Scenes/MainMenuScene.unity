@@ -10630,6 +10630,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7004628281118381761, guid: 3aecbffef1ac5db41bb87e436f2a2421, type: 3}
+      propertyPath: physicalDamageSFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7004628281118381761, guid: 3aecbffef1ac5db41bb87e436f2a2421, type: 3}
+      propertyPath: 'physicalDamageSFX.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a7862969e81e47944bcdc73aa1c612b5, type: 3}
+    - target: {fileID: 7004628281118381761, guid: 3aecbffef1ac5db41bb87e436f2a2421, type: 3}
+      propertyPath: 'physicalDamageSFX.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b7af6d4410f68543b223ca265f8bf38, type: 3}
+    - target: {fileID: 7004628281118381761, guid: 3aecbffef1ac5db41bb87e436f2a2421, type: 3}
+      propertyPath: 'physicalDamageSFX.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2294df182f7525e4c890944befe2b633, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10700,6 +10716,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caa2c89ca70e7ed4ab4ad7b65754a6fc, type: 3}
+--- !u!1001 &6847183371329374365
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4061123700899722897, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_Name
+      value: World Utility Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.47344935
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3820933
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.95603746
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927436549992894102, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59d4a32d85c9a214a9b02d6bd5efaa29, type: 3}
 --- !u!1001 &7025231266227477813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10867,7 +10940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6600102403382488756, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
       propertyPath: m_fontColor.a
-      value: 0.39607844
+      value: 0.24705882
       objectReference: {fileID: 0}
     - target: {fileID: 7493623004269244904, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
       propertyPath: m_Name
@@ -11031,6 +11104,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2132677066389605480, guid: 99331ccd84108bc4aaacbe9b2b14f1b9, type: 3}
+      propertyPath: bloodSplatterVFX
+      value: 
+      objectReference: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+    - target: {fileID: 2132677066389605480, guid: 99331ccd84108bc4aaacbe9b2b14f1b9, type: 3}
       propertyPath: takeDamageEffect
       value: 
       objectReference: {fileID: 11400000, guid: 245833a071e2b9a4aab22211c2092b74, type: 2}
@@ -11065,7 +11142,8 @@ SceneRoots:
   - {fileID: 8461113788946654509}
   - {fileID: 500422928557062123}
   - {fileID: 4614985568177208624}
-  - {fileID: 7480035998662756918}
-  - {fileID: 7025231266227477813}
+  - {fileID: 6847183371329374365}
   - {fileID: 1279740991747382561}
+  - {fileID: 7025231266227477813}
+  - {fileID: 7480035998662756918}
   - {fileID: 1255641}
