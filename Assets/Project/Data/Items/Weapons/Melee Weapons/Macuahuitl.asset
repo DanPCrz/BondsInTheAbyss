@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Macuahuitl
   m_EditorClassIdentifier: 
   itemName: Macuahuitl
-  itemID: 0
+  itemID: 1
   itemIcon: {fileID: 21300000, guid: c81d4a81ad4593a4897c811101d84661, type: 3}
   itemDescription: Ancient sword which belonged to a legendary warrior from distant
     lands
@@ -23,9 +23,13 @@ MonoBehaviour:
   intelligenceRequirement: 0
   faithRequirement: 10
   physicalDamage: 150
-  magicDamage: 0
+  magicalDamage: 0
   fireDamage: 0
   lightningDamage: 0
   poisonDamage: 0
   poiseDamage: 30
+  lightAttack1Modifier: 1
   baseStaminaCost: 25
+  lightAttack1StaminaCostMultiplier: 0.9
+  rbAction1H: {fileID: 0}
+  rtAction1H: {fileID: 11400000, guid: 8f63b594ffbf247409bec36f9496d9ec, type: 2}

@@ -30,5 +30,6 @@ public class WeaponItem : Item
 
     [Header("Weapon Actions")]
     public WeaponItemAction rbAction1H;
+    public WeaponItemAction rtAction1H;
 
 }

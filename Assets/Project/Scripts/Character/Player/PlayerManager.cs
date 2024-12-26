@@ -75,7 +75,9 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
         playerNetworkManager.isLockedOn.OnValueChanged += playerNetworkManager.OnIsLockedOnChanged;
-        playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged += playerNetworkManager.OnTargetIDChange;    
+        playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged += playerNetworkManager.OnTargetIDChange;
+
+        playerNetworkManager.isChargingAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
         }
 
     protected override void OnNetworkPostSpawn()
@@ -85,6 +87,30 @@ public class PlayerManager : CharacterManager
         {
             WorldGameSaveManager.instance.LoadGame();
         }
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+        if (IsOwner)
+        {
+            playerNetworkManager.vitality.OnValueChanged -= playerNetworkManager.SetNewMaxHealthValue;
+            playerNetworkManager.endurance.OnValueChanged -= playerNetworkManager.SetNewMaxStaminaValue;
+
+            playerNetworkManager.currentHealth.OnValueChanged -= PlayerUIManager.instance.playerHUDManager.SetNewHealthValue;
+            playerNetworkManager.currentStamina.OnValueChanged -= PlayerUIManager.instance.playerHUDManager.SetNewStaminaValue;
+            playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
+        }
+        playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
+
+        playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
+        playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+
+        playerNetworkManager.isLockedOn.OnValueChanged -= playerNetworkManager.OnIsLockedOnChanged;
+        playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged -= playerNetworkManager.OnTargetIDChange;
+
+        playerNetworkManager.isChargingAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
     }
 
     public override IEnumerator ProcessDeathEvent(bool mannualySelectDeathAnimation = false)

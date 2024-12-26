@@ -633,6 +633,7 @@ MonoBehaviour:
   characterAnimationManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
+  characterLocomotionManager: {fileID: 0}
   isPerformingAction: 0
   isGrounded: 1
   applyRootMotion: 0
@@ -672,6 +673,8 @@ MonoBehaviour:
     m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
+  isChargingAttack:
+    m_InternalValue: 1
   currentStamina:
     m_InternalValue: 0
   maxStamina:
@@ -704,6 +707,7 @@ MonoBehaviour:
   groundedYVelocity: -30
   fallStartYVelocity: -7.5
   gravity: -20
+  isRolling: 0
 --- !u!114 &1467771057884837112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +821,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.53
-  m_Radius: 0.19
+  m_Radius: 0.16
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
