@@ -66,8 +66,6 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewHealthValue;
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewStaminaValue;
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
-
-            
         }
         playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
 
@@ -176,20 +174,6 @@ public class PlayerManager : CharacterManager
         {
             reviveCharacter = false;
             ReviveCharacter();
-        }
-
-        if (getCharacter)
-        {
-            GameObject prefab = PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
-            getCharacter = false;
-            if (prefab != null)
-            {
-                Debug.Log($"This GameObject originates from the prefab: {prefab.name}");
-            }
-            else
-            {
-                Debug.Log("This GameObject is not a prefab.");
-            }
         }
     }
 }
