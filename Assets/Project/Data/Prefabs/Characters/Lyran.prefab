@@ -510,13 +510,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034343366543971295}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.010716281, y: 0.92100215, z: 0.10490734, w: -0.37501284}
+  m_LocalPosition: {x: 0.017, y: 0.001, z: 0.018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7655972174069691077}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -10.673, y: 224.848, z: -5.748}
 --- !u!114 &2749949826799663321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2674,8 +2674,8 @@ GameObject:
   - component: {fileID: -6620287753506336314}
   - component: {fileID: 8921513081473552033}
   - component: {fileID: 2471797394189360204}
-  - component: {fileID: 7582922645677378815}
   - component: {fileID: 190946231944021217}
+  - component: {fileID: 7582922645677378815}
   - component: {fileID: 977732385356077930}
   - component: {fileID: 6404023306127999925}
   - component: {fileID: -2790783686132317662}
@@ -2739,7 +2739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3744184858
+  GlobalObjectIdHash: 2409026345
   InScenePlacedSourceGlobalObjectIdHash: 2409026345
   DeferredDespawnTick: 0
   Ownership: 1
@@ -2776,6 +2776,7 @@ MonoBehaviour:
   characterAnimationManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
+  characterLocomotionManager: {fileID: 0}
   isPerformingAction: 0
   isGrounded: 1
   applyRootMotion: 0
@@ -2817,12 +2818,16 @@ MonoBehaviour:
     m_InternalValue: 0
   moveAmount:
     m_InternalValue: 0
+  currentTargetNetworkObjectID:
+    m_InternalValue: 0
   isSprinting:
     m_InternalValue: 0
   isJumping:
     m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
+  isChargingAttack:
+    m_InternalValue: 1
   currentStamina:
     m_InternalValue: 0
   maxStamina:
@@ -2934,6 +2939,7 @@ MonoBehaviour:
   groundedYVelocity: -30
   fallStartYVelocity: -7.5
   gravity: -20
+  isRolling: 0
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
@@ -2976,6 +2982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5352c1c884060704285d6f07e67c9f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 6277134695147537136}
@@ -2992,7 +2999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a085b0e2b8ebb4db6819b483b85aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodSplatterVFX: {fileID: 0}
+  bloodSplatterVFX: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
   effectToTest: {fileID: 11400000, guid: 6c4506f8d7cc4d14ba50100f20eb4f55, type: 2}
   processEffect: 0
 --- !u!114 &2471797394189360204
@@ -3008,24 +3015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staminaRegenerationDelay: 2
---- !u!114 &7582922645677378815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8120803329597677439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a06b047150ba8b43ac2c2668b23c472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightHandSlot: {fileID: 0}
-  leftHandSlot: {fileID: 0}
-  rightWeaponManager: {fileID: 0}
-  leftWeaponManager: {fileID: 0}
-  rightWeaponModel: {fileID: 0}
-  leftWeaponModel: {fileID: 0}
 --- !u!114 &190946231944021217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3050,6 +3039,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c241b6db8d615aa45923a7db2c798bca, type: 2}
   - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
   leftHandSlotIndex: 0
+--- !u!114 &7582922645677378815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8120803329597677439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a06b047150ba8b43ac2c2668b23c472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHandSlot: {fileID: 0}
+  leftHandSlot: {fileID: 0}
+  rightWeaponManager: {fileID: 0}
+  leftWeaponManager: {fileID: 0}
+  rightWeaponModel: {fileID: 0}
+  leftWeaponModel: {fileID: 0}
 --- !u!114 &977732385356077930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3086,7 +3093,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.88, z: 0}
+  m_Center: {x: 0, y: 0.84, z: 0}
 --- !u!54 &-2790783686132317662
 Rigidbody:
   m_ObjectHideFlags: 0

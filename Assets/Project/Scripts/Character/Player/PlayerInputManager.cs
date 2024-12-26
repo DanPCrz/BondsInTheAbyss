@@ -18,6 +18,8 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool sprintInput = false;
     [SerializeField] bool jumpInput = false;
     [SerializeField] bool rbInput = false;
+    [SerializeField] bool rtInput = false;
+    [SerializeField] bool rtHoldInput = false;
 
     [Header("Camera Input")]
     [SerializeField] Vector2 cameraInput;
@@ -29,6 +31,8 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool switchTargetRight = false;
     [SerializeField] bool switchTargetLeft = false;
     private Coroutine lockOnCoroutine;
+
+
 
     private void Awake()
     {
@@ -82,11 +86,19 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
+
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
+
             playerControls.PlayerActions.RB.performed += i => rbInput = true;
+
+            playerControls.PlayerActions.RT.performed += i => rtInput = true;
+            playerControls.PlayerActions.HoldRT.performed += i => rtHoldInput = true;
+            playerControls.PlayerActions.HoldRT.canceled += i => rtHoldInput = false;
+
             playerControls.PlayerActions.LockOn.performed += i => lockOnInput = true;
             playerControls.PlayerActions.SwitchLockedTargetRight.performed += i => switchTargetRight = true;
             playerControls.PlayerActions.SwitchLockedTargetLeft.performed += i => switchTargetLeft = true;
@@ -130,6 +142,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleSprintInput();
         HandleJumpInput();
         HandleRBInput();
+        HandleRTInput();
+        HandleRTHoldInput();
     }
 
     private void HandlePlayerInput()
@@ -204,6 +218,27 @@ public class PlayerInputManager : MonoBehaviour
             rbInput = false;
             player.playerNetworkManager.SetCharcterActionHand(true);
             player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.rbAction1H, player.playerInventoryManager.currentRightHandWeapon);
+        }
+    }
+
+    private void HandleRTInput()
+    {
+        if (rtInput)
+        {
+            rtInput = false;
+            player.playerNetworkManager.SetCharcterActionHand(true);
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.rtAction1H, player.playerInventoryManager.currentRightHandWeapon);
+        }
+    }
+
+    private void HandleRTHoldInput()
+    {
+        if (player.isPerformingAction)
+        {
+            if (player.playerNetworkManager.isUsingRightHand.Value)
+            {
+                player.playerNetworkManager.isChargingAttack.Value = rtHoldInput;
+            }
         }
     }
 

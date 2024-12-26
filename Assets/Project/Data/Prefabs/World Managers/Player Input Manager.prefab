@@ -52,6 +52,12 @@ MonoBehaviour:
   dodgeInput: 0
   sprintInput: 0
   jumpInput: 0
+  rbInput: 0
+  rtInput: 0
+  rtHoldInput: 0
   cameraInput: {x: 0, y: 0}
   cameraHorizontalInput: 0
   cameraVerticalInput: 0
+  lockOnInput: 0
+  switchTargetRight: 0
+  switchTargetLeft: 0

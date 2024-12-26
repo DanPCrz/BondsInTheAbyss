@@ -577,7 +577,7 @@ PrefabInstance:
     - target: {fileID: 5341062052623428629, guid: 16fe013da4bbf7a41b6bba504ce3af10, type: 3}
       propertyPath: NetworkConfig.PlayerPrefab
       value: 
-      objectReference: {fileID: 8120803329597677439, guid: da4daac9c741ff54c8b31f9b88bd3b35, type: 3}
+      objectReference: {fileID: 8582622479478439233, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
     - target: {fileID: 8974084980736129719, guid: 16fe013da4bbf7a41b6bba504ce3af10, type: 3}
       propertyPath: m_Name
       value: World Network Manager
@@ -10460,6 +10460,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cd7d7c4180792e4f838ccd7eb2cbdb6, type: 3}
+--- !u!1001 &1022697697417668018
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -6352840747696533571, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1837001666
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660760214717644960, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_Name
+      value: Exported model
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268415372664986314, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
 --- !u!1001 &1279740991747382561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10705,12 +10766,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8031370559780820886, guid: caa2c89ca70e7ed4ab4ad7b65754a6fc, type: 3}
       propertyPath: weaponItemActions.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8031370559780820886, guid: caa2c89ca70e7ed4ab4ad7b65754a6fc, type: 3}
       propertyPath: 'weaponItemActions.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 0697d038bc87ed84ebc0f24b92d8b992, type: 2}
+    - target: {fileID: 8031370559780820886, guid: caa2c89ca70e7ed4ab4ad7b65754a6fc, type: 3}
+      propertyPath: 'weaponItemActions.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f63b594ffbf247409bec36f9496d9ec, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10846,10 +10911,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1230932279736244359, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1381653589473097587, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10860,22 +10921,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1381653589473097587, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1381653589473097587, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1933103253324018070, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: widthScaleMultiplier
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2287343519308416657, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: m_Color.a
-      value: 0.6313726
-      objectReference: {fileID: 0}
-    - target: {fileID: 3351638722047650246, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3668034258846982129, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
@@ -10902,10 +10947,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4483019523517889629, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4789030320279619930, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10918,10 +10959,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4789030320279619930, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5050904240396715434, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10929,14 +10966,6 @@ PrefabInstance:
     - target: {fileID: 5050904240396715434, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5050904240396715434, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5490361009440763323, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: widthScaleMultiplier
-      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 6600102403382488756, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
       propertyPath: m_fontColor.a
@@ -11107,18 +11136,6 @@ PrefabInstance:
       propertyPath: bloodSplatterVFX
       value: 
       objectReference: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
-    - target: {fileID: 2132677066389605480, guid: 99331ccd84108bc4aaacbe9b2b14f1b9, type: 3}
-      propertyPath: takeDamageEffect
-      value: 
-      objectReference: {fileID: 11400000, guid: 245833a071e2b9a4aab22211c2092b74, type: 2}
-    - target: {fileID: 2132677066389605480, guid: 99331ccd84108bc4aaacbe9b2b14f1b9, type: 3}
-      propertyPath: instantCharacterEffects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132677066389605480, guid: 99331ccd84108bc4aaacbe9b2b14f1b9, type: 3}
-      propertyPath: 'instantCharacterEffects.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 245833a071e2b9a4aab22211c2092b74, type: 2}
     - target: {fileID: 3860863944427457761, guid: 99331ccd84108bc4aaacbe9b2b14f1b9, type: 3}
       propertyPath: m_Name
       value: World Character Effects Manager
@@ -11147,3 +11164,4 @@ SceneRoots:
   - {fileID: 7025231266227477813}
   - {fileID: 7480035998662756918}
   - {fileID: 1255641}
+  - {fileID: 1022697697417668018}

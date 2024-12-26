@@ -1,5 +1,13 @@
 fileFormatVersion: 2
-guid: d029b6dbc73753d48b1cde1ffae804e0
+guid: 169d77f0e705e794883780363fd1fd2e
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220752
+  packageName: Straight Sword Animation Set
+  packageVersion: 3.0
+  assetPath: Assets/Nephilite Studios/Straight Sword Animation Set/Animations/Straight
+    Sword Animations/Nephilim Animations (Remastered)/Straight Sword Dual Wield/straight_sword_dw_back_step_attack_02_release.fbx
+  uploadId: 695402
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +24,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -33,11 +39,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: straight_sword_main_equip_L_01
-      takeName: straight_sword_main_equip_L_01
-      internalID: -8583824354418632024
+      name: Heavy Attack 1
+      takeName: straight_sword_dw_back_step_attack_02_release
+      internalID: -2761089046175811888
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -749,8 +755,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ad932253e8dc8841948afa5d1a0d051,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ad932253e8dc8841948afa5d1a0d051, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -762,10 +767,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 220752
-  packageName: Straight Sword Animation Set
-  packageVersion: 3.0
-  assetPath: Assets/Project/Art/Animations/Characters/Players/Core/straight_sword_main_equip_L_01.fbx
-  uploadId: 695402
