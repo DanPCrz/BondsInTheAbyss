@@ -21,6 +21,11 @@ public class CharacterAnimationManager : MonoBehaviour
         horizontal = Animator.StringToHash("Horizontal");
     }
 
+    protected virtual void Start()
+    {
+        
+    }
+
     public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement, bool isSprinting, bool isDowned)
     {
         float snappedVertical;

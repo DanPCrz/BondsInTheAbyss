@@ -19,5 +19,7 @@ public class WeaponManager : MonoBehaviour
         meleeDamageCollider.poisonDamage = weapon.poisonDamage;
 
         meleeDamageCollider.lightAttack1Modifier = weapon.lightAttack1Modifier;
+        meleeDamageCollider.heavyAttack1Modifier = weapon.heavyAttack1Modifier;
+        meleeDamageCollider.chargedAttack1Modifier = weapon.chargedAttack1Modifier;
     }
 }

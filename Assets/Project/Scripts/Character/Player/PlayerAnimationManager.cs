@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerAnimationManager : CharacterAnimationManager
@@ -8,6 +9,13 @@ public class PlayerAnimationManager : CharacterAnimationManager
     {
         base.Awake();
         player = GetComponent<PlayerManager>();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        GameObject prefab = PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+        
     }
 
     private void OnAnimatorMove()

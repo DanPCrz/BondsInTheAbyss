@@ -220,7 +220,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Hold RT"",
                     ""type"": ""PassThrough"",
                     ""id"": ""cfacb824-8b9f-498b-82af-051d705ae0c9"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold(pressPoint=0.1)"",
                     ""initialStateCheck"": false
@@ -247,6 +247,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Switch Locked Target Left"",
                     ""type"": ""Button"",
                     ""id"": ""ae8a614b-8c24-4d3c-b6dd-c4148eafa7e1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch Right Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""69602448-7181-41ca-8f66-01e5a592c428"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch Left Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""1eaee117-1a0f-4a0a-bc3c-e99afebd945c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -295,6 +313,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b38071f4-78a0-4793-8447-41b7245e1e58"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch Right Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8392181c-86bc-4c5f-b483-2b6164862843"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch Left Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -403,6 +443,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("Lock On", throwIfNotFound: true);
         m_PlayerActions_SwitchLockedTargetRight = m_PlayerActions.FindAction("Switch Locked Target Right", throwIfNotFound: true);
         m_PlayerActions_SwitchLockedTargetLeft = m_PlayerActions.FindAction("Switch Locked Target Left", throwIfNotFound: true);
+        m_PlayerActions_SwitchRightWeapon = m_PlayerActions.FindAction("Switch Right Weapon", throwIfNotFound: true);
+        m_PlayerActions_SwitchLeftWeapon = m_PlayerActions.FindAction("Switch Left Weapon", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -576,6 +618,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_SwitchLockedTargetRight;
     private readonly InputAction m_PlayerActions_SwitchLockedTargetLeft;
+    private readonly InputAction m_PlayerActions_SwitchRightWeapon;
+    private readonly InputAction m_PlayerActions_SwitchLeftWeapon;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -589,6 +633,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @SwitchLockedTargetRight => m_Wrapper.m_PlayerActions_SwitchLockedTargetRight;
         public InputAction @SwitchLockedTargetLeft => m_Wrapper.m_PlayerActions_SwitchLockedTargetLeft;
+        public InputAction @SwitchRightWeapon => m_Wrapper.m_PlayerActions_SwitchRightWeapon;
+        public InputAction @SwitchLeftWeapon => m_Wrapper.m_PlayerActions_SwitchLeftWeapon;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -625,6 +671,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchLockedTargetLeft.started += instance.OnSwitchLockedTargetLeft;
             @SwitchLockedTargetLeft.performed += instance.OnSwitchLockedTargetLeft;
             @SwitchLockedTargetLeft.canceled += instance.OnSwitchLockedTargetLeft;
+            @SwitchRightWeapon.started += instance.OnSwitchRightWeapon;
+            @SwitchRightWeapon.performed += instance.OnSwitchRightWeapon;
+            @SwitchRightWeapon.canceled += instance.OnSwitchRightWeapon;
+            @SwitchLeftWeapon.started += instance.OnSwitchLeftWeapon;
+            @SwitchLeftWeapon.performed += instance.OnSwitchLeftWeapon;
+            @SwitchLeftWeapon.canceled += instance.OnSwitchLeftWeapon;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -656,6 +708,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchLockedTargetLeft.started -= instance.OnSwitchLockedTargetLeft;
             @SwitchLockedTargetLeft.performed -= instance.OnSwitchLockedTargetLeft;
             @SwitchLockedTargetLeft.canceled -= instance.OnSwitchLockedTargetLeft;
+            @SwitchRightWeapon.started -= instance.OnSwitchRightWeapon;
+            @SwitchRightWeapon.performed -= instance.OnSwitchRightWeapon;
+            @SwitchRightWeapon.canceled -= instance.OnSwitchRightWeapon;
+            @SwitchLeftWeapon.started -= instance.OnSwitchLeftWeapon;
+            @SwitchLeftWeapon.performed -= instance.OnSwitchLeftWeapon;
+            @SwitchLeftWeapon.canceled -= instance.OnSwitchLeftWeapon;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -738,6 +796,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLockOn(InputAction.CallbackContext context);
         void OnSwitchLockedTargetRight(InputAction.CallbackContext context);
         void OnSwitchLockedTargetLeft(InputAction.CallbackContext context);
+        void OnSwitchRightWeapon(InputAction.CallbackContext context);
+        void OnSwitchLeftWeapon(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

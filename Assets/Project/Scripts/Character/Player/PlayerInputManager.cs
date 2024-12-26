@@ -17,6 +17,10 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool dodgeInput = false;
     [SerializeField] bool sprintInput = false;
     [SerializeField] bool jumpInput = false;
+    [SerializeField] bool switchRightWeaponInput = false;
+    [SerializeField] bool switchLeftWeaponInput = false;
+
+    [Header("Attack Input")]
     [SerializeField] bool rbInput = false;
     [SerializeField] bool rtInput = false;
     [SerializeField] bool rtHoldInput = false;
@@ -95,6 +99,9 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerActions.RB.performed += i => rbInput = true;
 
+            playerControls.PlayerActions.SwitchRightWeapon.performed += i => switchRightWeaponInput = true;
+            playerControls.PlayerActions.SwitchLeftWeapon.performed += i => switchLeftWeaponInput = true;
+
             playerControls.PlayerActions.RT.performed += i => rtInput = true;
             playerControls.PlayerActions.HoldRT.performed += i => rtHoldInput = true;
             playerControls.PlayerActions.HoldRT.canceled += i => rtHoldInput = false;
@@ -141,6 +148,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleDodgeInput();
         HandleSprintInput();
         HandleJumpInput();
+        HandleSwitchRightWeaponInput();
+        HandleSwitchLeftWeaponInput();
         HandleRBInput();
         HandleRTInput();
         HandleRTHoldInput();
@@ -208,6 +217,24 @@ public class PlayerInputManager : MonoBehaviour
         {
             jumpInput = false;
             player.playerLocomotionManager.AttemptJump();
+        }
+    }
+
+    private void HandleSwitchRightWeaponInput()
+    {
+        if (switchRightWeaponInput)
+        {
+            switchRightWeaponInput = false;
+            player.playerEquipmentManager.SwitchRightWeapon();
+        }
+    }
+
+    private void HandleSwitchLeftWeaponInput()
+    {
+        if (switchLeftWeaponInput)
+        {
+            switchLeftWeaponInput = false;
+            player.playerEquipmentManager.SwitchLeftWeapon();
         }
     }
 

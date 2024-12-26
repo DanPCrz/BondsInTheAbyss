@@ -2840,6 +2840,8 @@ MonoBehaviour:
     m_InternalValue: 1
   vitality:
     m_InternalValue: 1
+  LyranPrefab: {fileID: 8120803329597677439}
+  AldricPrefab: {fileID: 1660760214717644960, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
   playerName:
     m_InternalValue:
       utf8LengthInBytes: 6
@@ -2987,6 +2989,7 @@ MonoBehaviour:
   currentAttackType: 0
   lockOnTransform: {fileID: 6277134695147537136}
   currentWeaponBeingUsed: {fileID: 0}
+  canComboWithMainWeapon: 0
 --- !u!114 &8921513081473552033
 MonoBehaviour:
   m_ObjectHideFlags: 0
