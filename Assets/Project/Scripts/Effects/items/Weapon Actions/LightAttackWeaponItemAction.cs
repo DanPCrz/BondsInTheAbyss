@@ -15,13 +15,22 @@ public class LightAttackWeaponItemAction : WeaponItemAction
 
     private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
     {
-        if (playerPerformingAction.playerNetworkManager.isUsingRightHand.Value)
+        if (playerPerformingAction.playerCombatManager.canComboWithMainWeapon && playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation(AttackType.LightAttack1 ,"Light Attack 1", true);
-        }
-        if (playerPerformingAction.playerNetworkManager.isUsingLeftHand.Value)
-        {
+            playerPerformingAction.playerCombatManager.canComboWithMainWeapon = false;
 
+            if (playerPerformingAction.playerCombatManager.lastAttackAnimationPerformed == "Light Attack 1")
+            {
+                playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation(AttackType.LightAttack2, "Light Attack 2", true);
+            }
+            else
+            {
+                playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation(AttackType.LightAttack1, "Light Attack 1", true);
+            }
+        }
+        else if (!playerPerformingAction.isPerformingAction)
+        {
+            playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation(AttackType.LightAttack1, "Light Attack 1", true);
         }
     }
 }

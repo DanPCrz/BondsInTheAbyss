@@ -45,6 +45,9 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.HeavyAttack1:
                 staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttack1StaminaCostMultiplier;
                 break;
+            case AttackType.HeavyAttack2:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttack2StaminaCostMultiplier;
+                break;
             case AttackType.ChargedAttack1:
                 staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttack1StaminaCostMultiplier;
                 break;
@@ -64,19 +67,5 @@ public class PlayerCombatManager : CharacterCombatManager
         {
             PlayerCamera.instance.SetLockCameraHeight();
         }
-    }
-
-    public void EnableCanDoCombo()
-    {
-        if (player.playerNetworkManager.isUsingRightHand.Value)
-        {
-            canComboWithMainWeapon = true;
-        }
-    }
-
-    public void DisableCanDoCombo()
-    {
-        canComboWithMainWeapon = false;
-        //canComboWithOffHandWeapon = false;
     }
 }

@@ -25,6 +25,7 @@ public class WeaponItem : Item
     public float lightAttack1Modifier = 0.9f;
     public float lightAttack2Modifier = 1.1f;
     public float heavyAttack1Modifier = 1.5f;
+    public float heavyAttack2Modifier = 1.75f;
     public float chargedAttack1Modifier = 2;
 
     [Header("Weapon Stamina Cost Modifiers")]
@@ -32,6 +33,7 @@ public class WeaponItem : Item
     public float lightAttack1StaminaCostMultiplier = 0.7f;
     public float lightAttack2StaminaCostMultiplier = 0.9f;
     public float heavyAttack1StaminaCostMultiplier = 1.2f;
+    public float heavyAttack2StaminaCostMultiplier = 1.3f;
     public float chargedAttack1StaminaCostMultiplier = 1.5f;
 
     [Header("Weapon Actions")]
