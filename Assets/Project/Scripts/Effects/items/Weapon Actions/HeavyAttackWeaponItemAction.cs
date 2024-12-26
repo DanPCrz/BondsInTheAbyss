@@ -15,13 +15,22 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
 
     private void PerformHeavyAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
     {
-        if (playerPerformingAction.playerNetworkManager.isUsingRightHand.Value)
+        if (playerPerformingAction.playerCombatManager.canComboWithMainWeapon && playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation(AttackType.HeavyAttack1, "Heavy Attack Charge", true);
-        }
-        if (playerPerformingAction.playerNetworkManager.isUsingLeftHand.Value)
-        {
+            playerPerformingAction.playerCombatManager.canComboWithMainWeapon = false;
 
+            if (playerPerformingAction.playerCombatManager.lastAttackAnimationPerformed == "Heavy Attack Charge 1")
+            {
+                playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation(AttackType.HeavyAttack2, "Heavy Attack Charge 2", true);
+            }
+            else
+            {
+                playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation(AttackType.HeavyAttack1, "Heavy Attack Charge 1", true);
+            }
+        }
+        else if (!playerPerformingAction.isPerformingAction)
+        {
+            playerPerformingAction.playerAnimationManager.PlayTargetAttackAnimation(AttackType.HeavyAttack1, "Heavy Attack Charge 1", true);
         }
     }
 }

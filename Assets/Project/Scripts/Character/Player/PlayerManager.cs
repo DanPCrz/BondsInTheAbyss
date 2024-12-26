@@ -6,7 +6,6 @@ public class PlayerManager : CharacterManager
 {
     [Header("Debug Menu")]
     [SerializeField] bool reviveCharacter = false;
-    [SerializeField] bool getCharacter = false;
 
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;

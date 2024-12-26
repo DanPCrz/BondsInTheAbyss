@@ -99,6 +99,7 @@ public class CharacterAnimationManager : MonoBehaviour
                                                   bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
     {
         character.characterCombatManager.currentAttackType = attackType;
+        character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
         character.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
@@ -106,5 +107,15 @@ public class CharacterAnimationManager : MonoBehaviour
         character.canMove = canMove;
 
         character.characterNetworkManager.NotifyAttackActionAnimationToServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+    }
+
+    public virtual void EnableCanDoCombo()
+    {
+
+    }
+
+    public virtual void DisableCanDoCombo()
+    {
+
     }
 }
