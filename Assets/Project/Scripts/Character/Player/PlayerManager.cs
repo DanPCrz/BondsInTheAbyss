@@ -1,12 +1,12 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
     [Header("Debug Menu")]
     [SerializeField] bool reviveCharacter = false;
-    [SerializeField] bool switchRightWeapon = false;
-    [SerializeField] bool switchLeftWeapon = false;
+    [SerializeField] bool getCharacter = false;
 
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
@@ -26,7 +26,6 @@ public class PlayerManager : CharacterManager
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
-        
     }
 
     protected override void Update()
@@ -66,7 +65,9 @@ public class PlayerManager : CharacterManager
 
             playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewHealthValue;
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewStaminaValue;
-            playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;           
+            playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
+
+            
         }
         playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
 
@@ -87,6 +88,7 @@ public class PlayerManager : CharacterManager
         {
             WorldGameSaveManager.instance.LoadGame();
         }
+        
     }
 
     public override void OnNetworkDespawn()
@@ -176,16 +178,18 @@ public class PlayerManager : CharacterManager
             ReviveCharacter();
         }
 
-        if (switchRightWeapon)
+        if (getCharacter)
         {
-            switchRightWeapon = false;
-            playerEquipmentManager.SwitchRightWeapon();
-        }
-
-        if (switchLeftWeapon)
-        {
-            switchLeftWeapon = false;
-            playerEquipmentManager.SwitchLeftWeapon();
+            GameObject prefab = PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+            getCharacter = false;
+            if (prefab != null)
+            {
+                Debug.Log($"This GameObject originates from the prefab: {prefab.name}");
+            }
+            else
+            {
+                Debug.Log("This GameObject is not a prefab.");
+            }
         }
     }
 }

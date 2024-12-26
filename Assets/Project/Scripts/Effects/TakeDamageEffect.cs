@@ -62,6 +62,8 @@ public class TakeDamageEffect : InstantCharacterEffect
         {
             finalDamageDealt = 1;
         }
+
+        finalDamageDealt = Mathf.Clamp(finalDamageDealt, 0, int.MaxValue);
         Debug.Log("Damage Dealt: " + finalDamageDealt);
         character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
     }

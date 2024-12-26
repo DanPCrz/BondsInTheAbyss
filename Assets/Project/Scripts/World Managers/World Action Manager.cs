@@ -6,6 +6,7 @@ public class WorldActionManager : MonoBehaviour
 {
     public static WorldActionManager instance;
 
+
     [Header("Weapon Item Actions")]
     public WeaponItemAction[] weaponItemActions;
 

@@ -7,6 +7,10 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public WeaponItem currentWeaponBeingUsed;
 
+    [Header("Flags")]
+    public bool canComboWithMainWeapon;
+    //public bool canComboWithOffHandWeapon;
+
     protected override void Awake()
     {
         base.Awake();
@@ -35,6 +39,15 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.LightAttack1:
                 staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttack1StaminaCostMultiplier;
                 break;
+            case AttackType.LightAttack2:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttack2StaminaCostMultiplier;
+                break;
+            case AttackType.HeavyAttack1:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttack1StaminaCostMultiplier;
+                break;
+            case AttackType.ChargedAttack1:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttack1StaminaCostMultiplier;
+                break;
             default:
                 break;
         }
@@ -51,5 +64,19 @@ public class PlayerCombatManager : CharacterCombatManager
         {
             PlayerCamera.instance.SetLockCameraHeight();
         }
+    }
+
+    public void EnableCanDoCombo()
+    {
+        if (player.playerNetworkManager.isUsingRightHand.Value)
+        {
+            canComboWithMainWeapon = true;
+        }
+    }
+
+    public void DisableCanDoCombo()
+    {
+        canComboWithMainWeapon = false;
+        //canComboWithOffHandWeapon = false;
     }
 }

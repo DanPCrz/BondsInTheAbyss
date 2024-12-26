@@ -53,7 +53,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     {
         if (!player.IsOwner)
             return;
-        player.playerAnimationManager.PlayTargetAnimation("Switch Right Weapon", false, true, true, true);
+        player.playerAnimationManager.PlayTargetAnimation("Switch Right Weapon", false, false, true, true);
 
         WeaponItem selectedWeapon = null;
 
@@ -126,7 +126,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     {
         if (!player.IsOwner)
             return;
-        player.playerAnimationManager.PlayTargetAnimation("Switch Left Weapon", false, true, true, true);
+        player.playerAnimationManager.PlayTargetAnimation("Switch Left Weapon", false, false, true, true);
 
         WeaponItem selectedWeapon = null;
 

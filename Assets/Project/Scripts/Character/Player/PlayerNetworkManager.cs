@@ -5,6 +5,8 @@ using Unity.Collections;
 public class PlayerNetworkManager : CharacterNetworkManager
 {
     PlayerManager player;
+    [SerializeField] GameObject LyranPrefab;
+    [SerializeField] GameObject AldricPrefab;
 
     public NetworkVariable<FixedString64Bytes> playerName = new NetworkVariable<FixedString64Bytes>("Player", NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
@@ -12,6 +14,7 @@ public class PlayerNetworkManager : CharacterNetworkManager
     public NetworkVariable<int> currentWeaponBeingUsed = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> currentRightHandWeaponID = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> currentLeftHandWeaponID = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> playerCharacterID = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isUsingRightHand = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isUsingLeftHand = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     
@@ -54,6 +57,11 @@ public class PlayerNetworkManager : CharacterNetworkManager
         WeaponItem newWeapon = Instantiate(WorldItemDatabase.instance.GetWeaponItemByID(newWeaponID));
         player.playerInventoryManager.currentRightHandWeapon = newWeapon;
         player.playerEquipmentManager.LoadRightWeapon();
+
+        if (player.IsOwner)
+        {
+            PlayerUIManager.instance.playerHUDManager.SetRightWeaponQuickSlot(newWeaponID);
+        }
     }
 
     public void OnCurrentLeftHandWeaponIDChange(int oldWeaponID, int newWeaponID)
@@ -61,6 +69,11 @@ public class PlayerNetworkManager : CharacterNetworkManager
         WeaponItem newWeapon = Instantiate(WorldItemDatabase.instance.GetWeaponItemByID(newWeaponID));
         player.playerInventoryManager.currentLeftHandWeapon = newWeapon;
         player.playerEquipmentManager.LoadLeftWeapon();
+
+        if (player.IsOwner)
+        {
+            PlayerUIManager.instance.playerHUDManager.SetLeftWeaponQuickSlot(newWeaponID);
+        }
     }
 
     public void OnCurrentWeaponBeingUsedIDChange(int oldWeaponID, int newWeaponID)
