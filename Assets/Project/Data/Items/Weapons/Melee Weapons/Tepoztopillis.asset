@@ -28,5 +28,8 @@ MonoBehaviour:
   lightningDamage: 0
   poisonDamage: 0
   poiseDamage: 10
+  lightAttack1Modifier: 1
   baseStaminaCost: 10
+  lightAttack1StaminaCostMultiplier: 0.9
   rbAction1H: {fileID: 11400000, guid: 0697d038bc87ed84ebc0f24b92d8b992, type: 2}
+  rtAction1H: {fileID: 11400000, guid: 8f63b594ffbf247409bec36f9496d9ec, type: 2}
