@@ -175,7 +175,7 @@ public class PlayerInputManager : MonoBehaviour
         if (player == null)
             return;
 
-        if (moveAmount > 0)
+        if (moveAmount != 0)
         {
             player.playerNetworkManager.isMoving.Value = true;
         }
@@ -254,7 +254,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             rbInput = false;
             player.playerNetworkManager.SetCharcterActionHand(true);
-            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.rbAction1H, player.playerInventoryManager.currentRightHandWeapon);
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.RBAction1H, player.playerInventoryManager.currentRightHandWeapon);
         }
     }
 
@@ -264,7 +264,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             rtInput = false;
             player.playerNetworkManager.SetCharcterActionHand(true);
-            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.rtAction1H, player.playerInventoryManager.currentRightHandWeapon);
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.RTAction1H, player.playerInventoryManager.currentRightHandWeapon);
         }
     }
 

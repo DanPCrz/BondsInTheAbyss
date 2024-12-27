@@ -13,6 +13,7 @@ public class DamageCollider : MonoBehaviour
     public float fireDamage = 0;
     public float lightningDamage = 0;
     public float poisonDamage = 0;
+    public float poiseDamage = 0;
 
     [Header("Contact Point")]
     protected Vector3 contactPoint;
@@ -49,7 +50,7 @@ public class DamageCollider : MonoBehaviour
         damageEffect.fireDamage = fireDamage;
         damageEffect.lightningDamage = lightningDamage;
         damageEffect.poisonDamage = poisonDamage;
-        damageEffect.poiseDamage = 0;
+        damageEffect.poiseDamage = poiseDamage;
         damageEffect.contactPoint = contactPoint;
 
         damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);

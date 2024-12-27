@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 650049358
+  GlobalObjectIdHash: 317230275
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -573,6 +573,7 @@ MonoBehaviour:
     m_InternalValue: 0
   isDead:
     m_InternalValue: 0
+  networkObject: {fileID: 0}
   characterController: {fileID: 0}
   animator: {fileID: 0}
   characterNetworkManager: {fileID: 0}
@@ -581,14 +582,13 @@ MonoBehaviour:
   characterCombatManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterGroup: 0
   isPerformingAction: 0
   isGrounded: 1
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
   reviveCharacter: 0
-  switchRightWeapon: 0
-  switchLeftWeapon: 0
   playerAnimationManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
   playerNetworkManager: {fileID: 0}
@@ -616,6 +616,8 @@ MonoBehaviour:
   networkPositionVelocity: {x: 0, y: 0, z: 0}
   networkPositionSmoothTime: 0.1
   networkRotationSmoothTime: 0.1
+  isMoving:
+    m_InternalValue: 0
   verticalMovement:
     m_InternalValue: 0
   horizontalMovement:
@@ -644,6 +646,8 @@ MonoBehaviour:
     m_InternalValue: 1
   vitality:
     m_InternalValue: 1
+  LyranPrefab: {fileID: 0}
+  AldricPrefab: {fileID: 0}
   playerName:
     m_InternalValue:
       utf8LengthInBytes: 6
@@ -719,6 +723,8 @@ MonoBehaviour:
     m_InternalValue: 0
   currentLeftHandWeaponID:
     m_InternalValue: 0
+  playerCharacterID:
+    m_InternalValue: 0
   isUsingRightHand:
     m_InternalValue: 0
   isUsingLeftHand:
@@ -787,10 +793,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 5702939998494705848}
   currentWeaponBeingUsed: {fileID: 0}
+  canComboWithMainWeapon: 0
 --- !u!114 &-5392837543949720255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,17 +839,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a1b378eda553e44bab19caf024bf97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRightHandWeapon: {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
-  currentLeftHandWeapon: {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
+  currentRightHandWeapon: {fileID: 11400000, guid: e5b3fbdd86eb013429ac5f4903c2f095, type: 2}
+  currentLeftHandWeapon: {fileID: 11400000, guid: e5b3fbdd86eb013429ac5f4903c2f095, type: 2}
   weaponsInRightHandSlots:
-  - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
+  - {fileID: 11400000, guid: e5b3fbdd86eb013429ac5f4903c2f095, type: 2}
   - {fileID: 11400000, guid: dc7bfe79e19524b4f9ab52986c6a7812, type: 2}
-  - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
+  - {fileID: 11400000, guid: e5b3fbdd86eb013429ac5f4903c2f095, type: 2}
   rightHandSlotIndex: 0
   weaponsInLeftHandSlots:
-  - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
-  - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
-  - {fileID: 11400000, guid: 0cddc46e7cf05fe428c654f2204b1b7b, type: 2}
+  - {fileID: 11400000, guid: e5b3fbdd86eb013429ac5f4903c2f095, type: 2}
+  - {fileID: 11400000, guid: e5b3fbdd86eb013429ac5f4903c2f095, type: 2}
+  - {fileID: 11400000, guid: e5b3fbdd86eb013429ac5f4903c2f095, type: 2}
   leftHandSlotIndex: 0
 --- !u!114 &517781381993269382
 MonoBehaviour:

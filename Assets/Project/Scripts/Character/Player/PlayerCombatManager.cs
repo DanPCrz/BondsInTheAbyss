@@ -42,6 +42,9 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.LightAttack2:
                 staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttack2StaminaCostMultiplier;
                 break;
+            case AttackType.LightAttack3:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttack3StaminaCostMultiplier;
+                break;
             case AttackType.HeavyAttack1:
                 staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttack1StaminaCostMultiplier;
                 break;
@@ -50,6 +53,9 @@ public class PlayerCombatManager : CharacterCombatManager
                 break;
             case AttackType.ChargedAttack1:
                 staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttack1StaminaCostMultiplier;
+                break;
+            case AttackType.ChargedAttack2:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttack2StaminaCostMultiplier;
                 break;
             default:
                 break;

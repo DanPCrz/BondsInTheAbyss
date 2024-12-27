@@ -14,8 +14,6 @@ public class PlayerAnimationManager : CharacterAnimationManager
     protected override void Start()
     {
         base.Start();
-        GameObject prefab = PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
-        
     }
 
     private void OnAnimatorMove()
