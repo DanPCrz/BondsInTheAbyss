@@ -56,6 +56,6 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     protected void OnDrawGizmosSelected()
     {
-        Gizmos.DrawSphere(character.transform.position, checkSphereRadius);
+        //Gizmos.DrawSphere(character.transform.position, checkSphereRadius);
     }
 }

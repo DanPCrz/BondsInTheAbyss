@@ -13,6 +13,7 @@ public class CharacterNetworkManager : NetworkBehaviour
     public float networkRotationSmoothTime = 0.1f;
 
     [Header("Animation")]
+    public NetworkVariable<bool> isMoving = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> verticalMovement = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> horizontalMovement = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> moveAmount = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -76,6 +77,11 @@ public class CharacterNetworkManager : NetworkBehaviour
     public void OnIsChargingAttackChanged(bool OldSatatus, bool newStatus)
     {
         character.animator.SetBool("IsChargingAttack", newStatus);
+    }
+
+    public void OnIsMovingChanged(bool oldStatus, bool newStatus)
+    {
+        character.animator.SetBool("IsMoving", isMoving.Value);
     }
 
     [ServerRpc]

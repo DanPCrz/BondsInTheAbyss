@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerInputManager : MonoBehaviour
 {
@@ -174,6 +175,15 @@ public class PlayerInputManager : MonoBehaviour
         if (player == null)
             return;
 
+        if (moveAmount > 0)
+        {
+            player.playerNetworkManager.isMoving.Value = true;
+        }
+        else
+        {
+            player.playerNetworkManager.isMoving.Value = false;
+        }
+
         if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)
         {
             player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
@@ -285,7 +295,7 @@ public class PlayerInputManager : MonoBehaviour
             {
                 StopCoroutine(lockOnCoroutine);
             }
-            else 
+            else
             {
                 lockOnCoroutine = StartCoroutine(PlayerCamera.instance.WaitThenFindNewTarget());
             }
@@ -346,4 +356,13 @@ public class PlayerInputManager : MonoBehaviour
             }
         }
     }
+
+    //private IEnumerator WaitForSceneLoad()
+    //{
+    //    while (!SceneManager.GetActiveScene().isLoaded)
+    //    {
+    //        yield return null;
+    //    }
+    //}
+
 }

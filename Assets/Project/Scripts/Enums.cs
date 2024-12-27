@@ -13,6 +13,12 @@ public enum SaveSlot
     NO_SLOT
 }
 
+public enum CharacterGroup
+{
+    Player,
+    AI
+}
+
 public enum WeaponModelSlot
 {
     RightHand,
