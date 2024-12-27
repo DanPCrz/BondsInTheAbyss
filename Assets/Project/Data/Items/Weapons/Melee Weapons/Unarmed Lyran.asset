@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6efddb071453094d8b00c41503d04fc, type: 3}
+  m_Name: Unarmed Lyran
+  m_EditorClassIdentifier: 
+  itemName: Unarmed Lyran
+  itemID: 0
+  itemIcon: {fileID: 0}
+  itemDescription: 
+  weaponModel: {fileID: 2150798597834268270, guid: bee07551bdf1db6429744ad1386973b8, type: 3}
+  strengthRequirement: 0
+  dexterityRequirement: 0
+  intelligenceRequirement: 0
+  faithRequirement: 0
+  physicalDamage: 10
+  magicalDamage: 0
+  fireDamage: 0
+  lightningDamage: 0
+  poisonDamage: 0
+  poiseDamage: 1
+  lightAttack1Modifier: 1
+  lightAttack2Modifier: 1.1
+  lightAttack3Modifier: 1.3
+  heavyAttack1Modifier: 1.5
+  heavyAttack2Modifier: 1.75
+  chargedAttack1Modifier: 2
+  chargedAttack2Modifier: 2.5
+  baseStaminaCost: 10
+  lightAttack1StaminaCostMultiplier: 0.9
+  lightAttack2StaminaCostMultiplier: 0.9
+  lightAttack3StaminaCostMultiplier: 1.1
+  heavyAttack1StaminaCostMultiplier: 1.2
+  heavyAttack2StaminaCostMultiplier: 1.3
+  chargedAttack1StaminaCostMultiplier: 1.5
+  chargedAttack2StaminaCostMultiplier: 1.75
+  RBAction1H: {fileID: 11400000, guid: aa525fbd698437248a7bd323502f01aa, type: 2}
+  RTAction1H: {fileID: 11400000, guid: 4022e5ec7acb022468ed44a0ac4fdbea, type: 2}

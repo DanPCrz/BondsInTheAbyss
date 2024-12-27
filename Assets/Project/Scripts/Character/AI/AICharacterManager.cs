@@ -5,6 +5,7 @@ public class AICharacterManager : CharacterManager
     [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
     [HideInInspector] public AICharacterNetworkManager aiCharacterNetworkManager;
     [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
+    [HideInInspector] public AICharacterAnimationManager aiCharacterAnimationManager;
 
     [Header("Nav Mesh Agent")]
     public NavMeshAgent navMeshAgent;
@@ -22,6 +23,7 @@ public class AICharacterManager : CharacterManager
         aiCharacterCombatManager = GetComponent<AICharacterCombatManager>();
         aiCharacterNetworkManager = GetComponent<AICharacterNetworkManager>();
         aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
+        aiCharacterAnimationManager = GetComponent<AICharacterAnimationManager>();
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
 
         idle = Instantiate(idle);
@@ -47,19 +49,20 @@ public class AICharacterManager : CharacterManager
             currentState = nextState;
         }
 
-        navMeshAgent.transform.position = Vector3.zero;
-        navMeshAgent.transform.rotation = Quaternion.identity;
+        //navMeshAgent.transform.position = Vector3.zero;
+        //navMeshAgent.transform.rotation = Quaternion.identity;
 
         if (aiCharacterCombatManager.currentTarget != null)
         {
-            //aiCharacterCombatManager.targetDirection = aiCharacterCombatManager.currentTarget.transform.position - transform.position;
-            //aiCharacterCombatManager.viewableAngle = WorldUtilityManager.instance.GetAngleOfTarget(transform, aiCharacterCombatManager.targetDirection);
+        //    aiCharacterCombatManager.targetDirection = aiCharacterCombatManager.currentTarget.transform.position - transform.position;
+        //    aiCharacterCombatManager.viewableAngle = WorldUtilityManager.instance.GetAngleOfTarget(transform, aiCharacterCombatManager.targetDirection);
+            aiCharacterCombatManager.distanceFromTarget = Vector3.Distance(transform.position, aiCharacterCombatManager.currentTarget.transform.position);
         }
 
         if (navMeshAgent.enabled)
         {
             Vector3 agentDestination = navMeshAgent.destination;
-            float remainingDistance = Vector3.Distance(transform.position, agentDestination);
+            float remainingDistance = Vector3.Distance(agentDestination, transform.position);
 
             if (remainingDistance > navMeshAgent.stoppingDistance)
             {

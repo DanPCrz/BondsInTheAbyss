@@ -4,6 +4,7 @@ using Unity.Netcode;
 public class PlayerUIManager : MonoBehaviour
 {
     public static PlayerUIManager instance;
+    public NetworkObject clientNetworkObject;
 
     [Header("Network Join")]
     [SerializeField] bool startGameAsClient;
