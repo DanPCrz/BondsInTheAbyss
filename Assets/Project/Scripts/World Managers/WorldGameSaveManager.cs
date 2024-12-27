@@ -183,7 +183,7 @@ public class WorldGameSaveManager : MonoBehaviour
         if (player == null)
         {
             Debug.LogError("PlayerManager not found! Unable to load game.");
-            yield break;   
+            yield break;
         }
         player.LoadGameFromCurrentSlot(ref currentSlotData);
         yield return null;

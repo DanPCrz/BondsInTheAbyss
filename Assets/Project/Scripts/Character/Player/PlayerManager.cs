@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
+
 
     protected override void Awake()
     {
