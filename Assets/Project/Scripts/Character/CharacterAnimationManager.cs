@@ -8,6 +8,10 @@ public class CharacterAnimationManager : MonoBehaviour
     int vertical;
     int horizontal;
 
+    [Header("Flags")]
+    public bool applyRootMotion = false;
+
+
     [Header("Damage Animations")]
     public string hit_Forward = "Hit Front";
     public string hit_Backward = "Hit Back";
@@ -86,11 +90,11 @@ public class CharacterAnimationManager : MonoBehaviour
                                             bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
     {
         Debug.Log("PlayTargetAnimation: " + targetAnimation);
-        character.applyRootMotion = applyRootMotion;
+        character.characterAnimationManager.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
-        character.canRotate = canRotate;
-        character.canMove = canMove;
+        character.characterLocomotionManager.canRotate = canRotate;
+        character.characterLocomotionManager.canMove = canMove;
 
         character.characterNetworkManager.NotifyActionAnimationToServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
     }
@@ -100,11 +104,11 @@ public class CharacterAnimationManager : MonoBehaviour
     {
         character.characterCombatManager.currentAttackType = attackType;
         character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
-        character.applyRootMotion = applyRootMotion;
+        character.characterAnimationManager.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
-        character.canRotate = canRotate;
-        character.canMove = canMove;
+        character.characterLocomotionManager.canRotate = canRotate;
+        character.characterLocomotionManager.canMove = canMove;
 
         character.characterNetworkManager.NotifyAttackActionAnimationToServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
     }

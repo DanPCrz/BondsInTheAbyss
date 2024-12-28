@@ -52,6 +52,18 @@ public class PlayerManager : CharacterManager
         PlayerCamera.instance.HandleAllCameraActions();
     }
 
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        
+    }
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();            
@@ -66,8 +78,13 @@ public class PlayerManager : CharacterManager
 
             playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewHealthValue;
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewStaminaValue;
+            playerNetworkManager.Auras.OnValueChanged += PlayerUIManager.instance.playerHUDManager.SetNewAuraValue;
+
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
         }
+        if (!IsOwner)
+            characterNetworkManager.currentHealth.OnValueChanged += characterUIManager.OnHPChanged;
+
         playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
 
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
@@ -102,6 +119,9 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.OnValueChanged -= PlayerUIManager.instance.playerHUDManager.SetNewStaminaValue;
             playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
         }
+        if (!IsOwner)
+            characterNetworkManager.currentHealth.OnValueChanged -= characterUIManager.OnHPChanged;
+
         playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
 
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
@@ -118,10 +138,17 @@ public class PlayerManager : CharacterManager
     {
         if (IsOwner)
         {
+            playerNetworkManager.currentHealth.Value = 0;
+            isDowned.Value = true;
+
+            if (!mannualySelectDeathAnimation)
+            {
+                playerAnimationManager.PlayTargetAnimation("Downed", false, false, true, true);
+            }
             PlayerUIManager.instance.playerPopUpManager.SendYouDiedPopUp();
         }
 
-        return base.ProcessDeathEvent(mannualySelectDeathAnimation);
+        yield return new WaitForSeconds(5);
     }
 
     public override void ReviveCharacter()

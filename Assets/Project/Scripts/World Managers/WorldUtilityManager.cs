@@ -59,6 +59,19 @@ public class WorldUtilityManager : MonoBehaviour
         return false;
     }
 
+    public bool CanIBeDowned(CharacterGroup character)
+    {
+        if (character == CharacterGroup.Player)
+        {
+            return true;
+        }
+        else if (character == CharacterGroup.AI)
+        {
+            return false;
+        }
+        return false;
+    }
+
 //    public float GetAngleOfTarget(Transform characterTransform, Vector3 targetDirection)
 //    {
 //        targetDirection.y = 0;

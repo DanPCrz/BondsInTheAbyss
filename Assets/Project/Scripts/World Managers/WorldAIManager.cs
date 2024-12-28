@@ -67,6 +67,15 @@ public class WorldAIManager : MonoBehaviour
         {
             GameObject instantiatedCharacter = Instantiate(character);
             instantiatedCharacter.GetComponent<NetworkObject>().Spawn();
+
+            // Set the health value
+            AICharacterNetworkManager aiCharacterNetworkManager = instantiatedCharacter.GetComponent<AICharacterNetworkManager>();
+            if (aiCharacterNetworkManager != null)
+            {
+                int initialVitality = 10; // Example value, adjust as needed
+                aiCharacterNetworkManager.SetNewMaxHealthValue(0, initialVitality);
+            }
+
             spawnedCharacters.Add(instantiatedCharacter);
         }
     }

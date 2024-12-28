@@ -528,13 +528,13 @@ GameObject:
   - component: {fileID: -8930016207307928923}
   - component: {fileID: 913273604306670793}
   - component: {fileID: 2365439037268724112}
-  - component: {fileID: 1467771057884837112}
+  - component: {fileID: -2057751635132063249}
   - component: {fileID: -8720244924991922566}
   - component: {fileID: 3249701131224405081}
+  - component: {fileID: 5576572735771841265}
   - component: {fileID: 1663003504650758980}
   - component: {fileID: 396809475444813544}
   - component: {fileID: 2711416877391365811}
-  - component: {fileID: 5576572735771841265}
   - component: {fileID: 5861159366514117924}
   - component: {fileID: 1084488931759563642}
   - component: {fileID: 7911208877515938879}
@@ -645,6 +645,7 @@ MonoBehaviour:
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterNetworkManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
+  aiCharacterAnimationManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
   currentState: {fileID: 11400000, guid: ccade1af45d752846a112e9bd6ffeead, type: 2}
   idle: {fileID: 11400000, guid: ccade1af45d752846a112e9bd6ffeead, type: 2}
@@ -720,7 +721,7 @@ MonoBehaviour:
   fallStartYVelocity: -7.5
   gravity: -20
   isRolling: 0
---- !u!114 &1467771057884837112
+--- !u!114 &-2057751635132063249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -729,7 +730,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2994609481305926485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 449e6c357ec2dbd47aef1ab0cd3e4478, type: 3}
+  m_Script: {fileID: 11500000, guid: fe9e05ee647084d429e204e0c5056370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hit_Forward: Hit Front
@@ -753,6 +754,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 8920525126588033389}
+  distanceFromTarget: 0
   viewableAngle: 0
   targetDirection: {x: 0, y: 0, z: 0}
   detectionRadius: 15
@@ -771,6 +773,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplatterVFX: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+--- !u!114 &5576572735771841265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994609481305926485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da19c865f1445754faae1c59c7351223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaRegenerationDelay: 2
 --- !u!114 &1663003504650758980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,19 +822,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c6e61931e524141b2a712b4fcb5201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5576572735771841265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2994609481305926485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da19c865f1445754faae1c59c7351223, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staminaRegenerationDelay: 2
 --- !u!143 &5861159366514117924
 CharacterController:
   m_ObjectHideFlags: 0

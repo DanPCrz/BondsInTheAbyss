@@ -47,5 +47,11 @@ MonoBehaviour:
   spawnCharacters: 0
   despawnCharacters: 0
   characterPrefabs:
-  - {fileID: 2994609481305926485, guid: c6a0920baad2797408561a4e5c52d933, type: 3}
+  - {fileID: 272029475600507565, guid: 3bff54f96e2ad8044a230f0fe87b1d5c, type: 3}
+  - {fileID: 272029475600507565, guid: 1580c131888cfe14db16b3981766d6c4, type: 3}
+  - {fileID: 272029475600507565, guid: 2a31854114f7a86459126aaa361e5dcc, type: 3}
+  - {fileID: 272029475600507565, guid: fcbee7f1e147a43458a053cc53e8c060, type: 3}
+  - {fileID: 272029475600507565, guid: 34b463cbbb142874591fe91f09eb7868, type: 3}
+  - {fileID: 272029475600507565, guid: 0e75c5ff3ed39ac4fb587a7bf77ce813, type: 3}
+  - {fileID: 272029475600507565, guid: c283ac8de8a0f7f40a3ca1705a200871, type: 3}
   spawnedCharacters: []

@@ -71,14 +71,28 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.13620955
-        functionName: OpenDamageCollider
+        functionName: OpenRightHandDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.48312816
-        functionName: CloseDamageCollider
+      - time: 0.2352941
+        functionName: OpenLeftHandDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.2647059
+        functionName: CloseRightHandDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.44236076
+        functionName: CloseLeftHandDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

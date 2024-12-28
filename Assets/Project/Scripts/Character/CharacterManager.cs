@@ -19,16 +19,13 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterCombatManager characterCombatManager;
     [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
+    [HideInInspector] public CharacterUIManager characterUIManager;
 
     [Header ("Character Group")]
     public CharacterGroup characterGroup;
 
     [Header("Flags")]
     public bool isPerformingAction = false;
-    public bool isGrounded = true;
-    public bool applyRootMotion = false;
-    public bool canRotate = true;
-    public bool canMove = true;
 
     protected virtual void Awake()
     {
@@ -42,6 +39,7 @@ public class CharacterManager : NetworkBehaviour
         characterCombatManager = GetComponent<CharacterCombatManager>();
         characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
         characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
+        characterUIManager = GetComponent<CharacterUIManager>();
     }
 
     protected virtual void Start()
@@ -51,7 +49,7 @@ public class CharacterManager : NetworkBehaviour
 
     protected virtual void Update()
     {
-        animator.SetBool("IsGrounded", isGrounded);
+        animator.SetBool("IsGrounded", characterLocomotionManager.isGrounded);
         if (IsOwner)
         {
             characterNetworkManager.networkPosition.Value = transform.position;
@@ -80,10 +78,20 @@ public class CharacterManager : NetworkBehaviour
 
     }
 
+    public virtual void OnEnable()
+    {
+        
+    }
+
+    public virtual void OnDisable()
+    {
+        
+    }
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-
+        animator.SetBool("IsMoving", characterNetworkManager.isMoving.Value);
         characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
     }
 
@@ -96,18 +104,7 @@ public class CharacterManager : NetworkBehaviour
 
     public virtual IEnumerator ProcessDeathEvent(bool mannualySelectDeathAnimation = false)
     {
-        if (IsOwner)
-        {
-            characterNetworkManager.currentHealth.Value = 0;
-            isDowned.Value = true;
-
-            if (!mannualySelectDeathAnimation)
-            {
-                characterAnimationManager.PlayTargetAnimation("Downed", false, false, true, true);
-            }
-        }
-
-        yield return new WaitForSeconds(5);
+        yield return null;
     }
 
     public virtual void ReviveCharacter()

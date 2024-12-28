@@ -522,6 +522,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6312dd80a5513d439794b664e754a34, type: 3}
+--- !u!1 &35376505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 869568040644709160, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
+  m_PrefabInstance: {fileID: 7480035998662756918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &58786787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -530,10 +535,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3916421323868811242, guid: 16fe013da4bbf7a41b6bba504ce3af10, type: 3}
-      propertyPath: m_MaxPacketQueueSize
-      value: 256
-      objectReference: {fileID: 0}
     - target: {fileID: 4678938834236258874, guid: 16fe013da4bbf7a41b6bba504ce3af10, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -574,14 +575,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5341062052623428629, guid: 16fe013da4bbf7a41b6bba504ce3af10, type: 3}
-      propertyPath: LogLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341062052623428629, guid: 16fe013da4bbf7a41b6bba504ce3af10, type: 3}
-      propertyPath: NetworkConfig.PlayerPrefab
-      value: 
-      objectReference: {fileID: 1660760214717644960, guid: 641ca35715980d143abfb7a5264a28f1, type: 3}
     - target: {fileID: 8974084980736129719, guid: 16fe013da4bbf7a41b6bba504ce3af10, type: 3}
       propertyPath: m_Name
       value: World Network Manager
@@ -5357,6 +5350,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 35376505}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1138176753
 MonoBehaviour:
@@ -10630,22 +10635,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7004628281118381761, guid: 3aecbffef1ac5db41bb87e436f2a2421, type: 3}
-      propertyPath: physicalDamageSFX.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7004628281118381761, guid: 3aecbffef1ac5db41bb87e436f2a2421, type: 3}
-      propertyPath: 'physicalDamageSFX.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: a7862969e81e47944bcdc73aa1c612b5, type: 3}
-    - target: {fileID: 7004628281118381761, guid: 3aecbffef1ac5db41bb87e436f2a2421, type: 3}
-      propertyPath: 'physicalDamageSFX.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 7b7af6d4410f68543b223ca265f8bf38, type: 3}
-    - target: {fileID: 7004628281118381761, guid: 3aecbffef1ac5db41bb87e436f2a2421, type: 3}
-      propertyPath: 'physicalDamageSFX.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 2294df182f7525e4c890944befe2b633, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10982,9 +10971,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6600102403382488756, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
-      propertyPath: m_fontColor.a
-      value: 0.24705882
+    - target: {fileID: 5980764522052899256, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980764522052899256, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980764522052899256, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980764522052899256, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7493623004269244904, guid: b2ecbbc605b5dff4c84ac6c3b25b6905, type: 3}
       propertyPath: m_Name
@@ -11171,10 +11172,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2132677066389605480, guid: 99331ccd84108bc4aaacbe9b2b14f1b9, type: 3}
-      propertyPath: bloodSplatterVFX
-      value: 
-      objectReference: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
     - target: {fileID: 3860863944427457761, guid: 99331ccd84108bc4aaacbe9b2b14f1b9, type: 3}
       propertyPath: m_Name
       value: World Character Effects Manager
@@ -11189,8 +11186,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
-  - {fileID: 832575519}
   - {fileID: 753074157}
+  - {fileID: 832575519}
   - {fileID: 1588514727}
   - {fileID: 1676855202417046677}
   - {fileID: 4026155235599923686}

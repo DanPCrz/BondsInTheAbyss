@@ -14,22 +14,22 @@ public class AICharacterAnimationManager : CharacterAnimationManager
     {
         if (aiCharacter.IsOwner)
         {
-            if (!aiCharacter.isGrounded)
+            if (!aiCharacter.characterLocomotionManager.isGrounded)
                 return;
 
             Vector3 velocity = aiCharacter.animator.deltaPosition;
 
-            aiCharacter.characterController.Move(velocity);
+            aiCharacter.characterControllerAttached.Move(velocity);
             aiCharacter.transform.rotation *= aiCharacter.animator.deltaRotation;
         }
         else
         {
-            if (!aiCharacter.isGrounded)
+            if (!aiCharacter.characterLocomotionManager.isGrounded)
                 return;
 
             Vector3 velocity = aiCharacter.animator.deltaPosition;
 
-            aiCharacter.characterController.Move(velocity);
+            aiCharacter.characterControllerAttached.Move(velocity);
             aiCharacter.transform.position = Vector3.SmoothDamp(transform.position,
                                                                 aiCharacter.characterNetworkManager.networkPosition.Value,
                                                                 ref aiCharacter.characterNetworkManager.networkPositionVelocity,

@@ -5,7 +5,7 @@ public class CharacterLocomotionManager : MonoBehaviour
     CharacterManager character;
 
     [Header("Ground Check and Jumping")]
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] protected LayerMask groundLayer;
     [SerializeField] float checkSphereRadius = 0.2f;
     [SerializeField] protected Vector3 yVelocity;
     [SerializeField] protected float groundedYVelocity = -30;
@@ -16,6 +16,9 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     [Header("Flags")]
     public bool isRolling = false;
+    public bool canRotate = true;
+    public bool canMove = true;
+    public bool isGrounded = true;
 
     protected virtual void Awake()
     {
@@ -25,7 +28,7 @@ public class CharacterLocomotionManager : MonoBehaviour
     {
         HandleGroundCheck();
 
-        if (character.isGrounded)
+        if (character.characterLocomotionManager.isGrounded)
         {
             if (yVelocity.y <0)
             {
@@ -49,13 +52,23 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     }
 
-    protected void HandleGroundCheck()
+    protected virtual void HandleGroundCheck()
     {
-        character.isGrounded = Physics.CheckSphere(character.transform.position, checkSphereRadius, groundLayer);
+        character.characterLocomotionManager.isGrounded = Physics.CheckSphere(character.transform.position, checkSphereRadius, groundLayer);
     }
 
     protected void OnDrawGizmosSelected()
     {
         //Gizmos.DrawSphere(character.transform.position, checkSphereRadius);
+    }
+
+    public void EnableCanRotate()
+    {
+        canRotate = true;
+    }
+
+    public void DisableCanRotate()
+    {
+        canRotate = false;
     }
 }

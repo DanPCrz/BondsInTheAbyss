@@ -18,55 +18,59 @@ public class CombatStanceState : AIState
     protected bool hasRolledForComboChance = false;
 
     [Header("Engagement Distance")]
-    [SerializeField] protected float maxEngagementDistance = 5;
+    [SerializeField] public float maxEngagementDistance = 5;
 
     public override AIState Tick(AICharacterManager aiCharacter)
     {
         if (aiCharacter.isPerformingAction)
-            return this;
+            return this;            
 
-        if (aiCharacter.navMeshAgent.enabled)
-            aiCharacter.navMeshAgent.enabled = true;
+        
+            if (aiCharacter.navMeshAgent.enabled)
+                aiCharacter.navMeshAgent.enabled = true;
 
-        if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
-        {
-            if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
+            //if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
+            //{
+            //    if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
+            //    {
+            //        aiCharacter.aiCharacterLocomotionManager.PivotTowardsAgent(aiCharacter);
+            //        return this;
+            //    }
+
+            //}
+
+            aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
+
+            if (aiCharacter.aiCharacterCombatManager.currentTarget == null)
+                return SwitchState(aiCharacter, aiCharacter.idle);
+
+            if (!hasAttack)
             {
-                aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
-                return this;
+                GetNewAttack(aiCharacter);
+            }
+            else
+            {
+                aiCharacter.attack.currentAttack = choosenAttack;
+                return SwitchState(aiCharacter, aiCharacter.attack);
             }
 
-        }
+            if (aiCharacter.aiCharacterCombatManager.distanceFromTarget > maxEngagementDistance)
+            {
+                return SwitchState(aiCharacter, aiCharacter.pursueTarget);
+            }
 
-        if (aiCharacter.aiCharacterCombatManager.currentTarget == null)
-            return SwitchState(aiCharacter, aiCharacter.idle);
+            NavMeshPath path = new NavMeshPath();
+            aiCharacter.navMeshAgent.CalculatePath(aiCharacter.characterCombatManager.currentTarget.transform.position, path);
+            aiCharacter.navMeshAgent.SetPath(path);
 
-        if (!hasAttack)
-        {
-            GetNewAttack(aiCharacter);
-        }
-        else 
-        {
-           
-        }
-
-        if (aiCharacter.aiCharacterCombatManager.distanceFromTarget > maxEngagementDistance)
-        {
-            return SwitchState(aiCharacter, aiCharacter.pursueTarget);
-        }
-
-        NavMeshPath path = new NavMeshPath();
-        aiCharacter.navMeshAgent.CalculatePath(aiCharacter.characterCombatManager.currentTarget.transform.position, path);
-        aiCharacter.navMeshAgent.SetPath(path);
-
-        return this;
+            return this;
     }
 
     protected virtual void GetNewAttack(AICharacterManager aiCharacter)
     {
         potentialAttacks = new List<AICharacterAttackAction>();
 
-        foreach (var potentialAttack in potentialAttacks)
+        foreach (var potentialAttack in aiCharacterAttacks)
         {
             if (potentialAttack.minimumAttackDistance > aiCharacter.aiCharacterCombatManager.distanceFromTarget ||
                 potentialAttack.maximumAttackDistance < aiCharacter.aiCharacterCombatManager.distanceFromTarget )
@@ -98,6 +102,7 @@ public class CombatStanceState : AIState
                 choosenAttack = attack;
                 previousAttack = choosenAttack;
                 hasAttack = true;
+                return;
             }
         }
     }

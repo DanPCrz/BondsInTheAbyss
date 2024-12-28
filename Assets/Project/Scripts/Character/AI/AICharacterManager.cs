@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+
 public class AICharacterManager : CharacterManager
 {
     [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
     [HideInInspector] public AICharacterNetworkManager aiCharacterNetworkManager;
     [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
     [HideInInspector] public AICharacterAnimationManager aiCharacterAnimationManager;
+    [HideInInspector] public AICharacterStatsManager aiCharacterStatsManager;
+    [HideInInspector] public CharacterController characterControllerAttached;
 
     [Header("Nav Mesh Agent")]
     public NavMeshAgent navMeshAgent;
@@ -16,6 +20,9 @@ public class AICharacterManager : CharacterManager
     [Header("States")]
     public IdleState idle;
     public PursueTargetState pursueTarget;
+    public CombatStanceState combatStance;
+    public AttackState attack;
+    //public DeadState dead;
 
     protected override void Awake()
     {
@@ -24,12 +31,24 @@ public class AICharacterManager : CharacterManager
         aiCharacterNetworkManager = GetComponent<AICharacterNetworkManager>();
         aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
         aiCharacterAnimationManager = GetComponent<AICharacterAnimationManager>();
+        aiCharacterStatsManager = GetComponent<AICharacterStatsManager>();
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
+        characterControllerAttached = GetComponent<CharacterController>();
 
         idle = Instantiate(idle);
         pursueTarget = Instantiate(pursueTarget);
+        combatStance = Instantiate(combatStance);
+        attack = Instantiate(attack);
+        //dead = Instantiate(dead);
 
         currentState = idle;
+
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        aiCharacterCombatManager.HandleActionRecovery(this);
     }
 
     protected override void FixedUpdate()
@@ -39,6 +58,36 @@ public class AICharacterManager : CharacterManager
         {
             ProcessStateMachine();
         }
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        if (IsOwner)
+        {
+            aiCharacterNetworkManager.vitality.OnValueChanged += aiCharacterNetworkManager.SetNewMaxHealthValue;
+        }
+            aiCharacterNetworkManager.currentHealth.OnValueChanged += aiCharacterNetworkManager.CheckHP;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+        aiCharacterNetworkManager.currentHealth.OnValueChanged -= aiCharacterNetworkManager.CheckHP;
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        if (characterUIManager.hasFloatingHPBar)
+            characterNetworkManager.currentHealth.OnValueChanged += characterUIManager.OnHPChanged;
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        if (characterUIManager.hasFloatingHPBar)
+            characterNetworkManager.currentHealth.OnValueChanged -= characterUIManager.OnHPChanged;
     }
 
     private void ProcessStateMachine()
@@ -77,5 +126,21 @@ public class AICharacterManager : CharacterManager
         {
             aiCharacterNetworkManager.isMoving.Value = false;
         }
+    }
+
+    public override IEnumerator ProcessDeathEvent(bool mannualySelectDeathAnimation = false)
+    {
+        if (IsOwner)
+        {
+            aiCharacterNetworkManager.currentHealth.Value = 0;
+            isDead.Value = true;
+            if (!mannualySelectDeathAnimation)
+            {
+                aiCharacterAnimationManager.PlayTargetAnimation("Death", true);
+            }
+            characterControllerAttached.height = 0;
+        }
+
+        yield return new WaitForSeconds(5);
     }
 }

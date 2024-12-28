@@ -22,6 +22,11 @@ public class CharacterCombatManager : NetworkBehaviour
         character = GetComponent<CharacterManager>();
     }
 
+    protected virtual void Update()
+    {
+        
+    }
+
     public virtual void SetTarget(CharacterManager newTarget)
     {
         if (character.IsOwner)

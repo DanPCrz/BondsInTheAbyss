@@ -63,28 +63,28 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.08352273
+      - time: 0.06673616
         functionName: DrainStaminaBasedOnAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.09812213
-        functionName: OpenDamageCollider
+      - time: 0.08133556
+        functionName: OpenRightHandDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.44504073
-        functionName: CloseDamageCollider
+      - time: 0.2651846
+        functionName: CloseRightHandDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.51914436
+      - time: 0.28413236
         functionName: EnableCanDoCombo
         data: 
         objectReferenceParameter: {instanceID: 0}

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class AICharacterCombatManager : CharacterCombatManager
 {
+    [Header("Recovery Timer")]
+    public float actionRecoveryTimer = 0;
+
     [Header("Target Info")]
     public float distanceFromTarget;
     public float viewableAngle;
@@ -11,6 +14,15 @@ public class AICharacterCombatManager : CharacterCombatManager
     [SerializeField] float detectionRadius = 15;
     [SerializeField] float minimumDetectionAngle = -40;
     [SerializeField] float maximumDetectionAngle = 40;
+
+    [Header("Attack Variables")]
+    public float attackRotationSpeed = 15;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
+    }
 
     public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)
     {
@@ -29,9 +41,9 @@ public class AICharacterCombatManager : CharacterCombatManager
             if (WorldUtilityManager.instance.CanIDamageThisTarget(aiCharacter.characterGroup, targetCharacter.characterGroup))
             {
                 Vector3 targetDirection = targetCharacter.transform.position - aiCharacter.transform.position;
-                float viewableAngle = Vector3.Angle(targetDirection, aiCharacter.transform.forward);
+                float angleOfPotentialTarget = Vector3.Angle(targetDirection, aiCharacter.transform.forward);
 
-                if (viewableAngle < maximumDetectionAngle && viewableAngle > minimumDetectionAngle)
+                if (angleOfPotentialTarget < maximumDetectionAngle && angleOfPotentialTarget > minimumDetectionAngle)
                 {
                     if (Physics.Linecast(aiCharacter.characterCombatManager.lockOnTransform.position, 
                         targetCharacter.characterCombatManager.lockOnTransform.position, 
@@ -43,8 +55,8 @@ public class AICharacterCombatManager : CharacterCombatManager
                     }
                     else
                     {
-                        Debug.DrawLine(aiCharacter.characterCombatManager.lockOnTransform.position,
-                            targetCharacter.characterCombatManager.lockOnTransform.position, Color.green);
+                        //targetDirection = targetCharacter.transform.position - transform.position;
+                        //this.viewableAngle = WorldUtilityManager.instance.GetAngleOfTarget(transform, targetDirection);
                         aiCharacter.characterCombatManager.SetTarget(targetCharacter);
                         //PivotTowardsTarget(aiCharacter);   
                     }
@@ -92,4 +104,39 @@ public class AICharacterCombatManager : CharacterCombatManager
     //        aiCharacter.characterAnimationManager.PlayTargetAnimation("Turn Left 180", true);
     //    }
     //}   
+
+    public void HandleActionRecovery(AICharacterManager aiCharacter)
+    {
+        if (actionRecoveryTimer > 0)
+        {
+            if (!aiCharacter.isPerformingAction)
+            {
+                actionRecoveryTimer -= Time.deltaTime;
+            }
+        }
+    }
+
+    public void RotateTowardsAgent(AICharacterManager aiCharacter)
+    {
+        if (aiCharacter.aiCharacterNetworkManager.isMoving.Value)
+        {
+            aiCharacter.transform.rotation = aiCharacter.navMeshAgent.transform.rotation;
+        }
+    }
+
+    public void RotateTowardsTargetWhileAttacking(AICharacterManager aiCharacter)
+    {
+        if (currentTarget == null || !aiCharacter.aiCharacterLocomotionManager.canRotate || !aiCharacter.isPerformingAction)
+            return;
+
+        Vector3 targetDirection = currentTarget.transform.position - aiCharacter.transform.position;
+        targetDirection.y = 0;
+        targetDirection.Normalize();
+
+        if (targetDirection == Vector3.zero)
+            targetDirection = aiCharacter.transform.forward;
+        
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, attackRotationSpeed * Time.deltaTime);
+    }
 }
