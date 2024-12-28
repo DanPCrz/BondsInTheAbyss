@@ -53,11 +53,17 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
             if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)
             {
-                player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
+                if (WorldUtilityManager.instance.CanIBeDowned(player.characterGroup))
+                    player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
+                else
+                    player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value, player.isDead.Value);
             }
             else
             {
-                player.playerAnimationManager.UpdateAnimatorMovementParameters(horizontalMovement, verticalMovement, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
+                if (WorldUtilityManager.instance.CanIBeDowned(player.characterGroup))
+                    player.playerAnimationManager.UpdateAnimatorMovementParameters(horizontalMovement, verticalMovement, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
+                else
+                    player.playerAnimationManager.UpdateAnimatorMovementParameters(horizontalMovement, verticalMovement, player.playerNetworkManager.isSprinting.Value, player.isDead.Value);
             }
         }
     }
@@ -79,7 +85,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleGroundedMovement()
     {
-        if (!player.canMove)
+        if (!player.playerLocomotionManager.canMove)
             return;
 
         GetMovementValues();
@@ -120,7 +126,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleFreeFallMovement()
     {
-        if (!player.isGrounded)
+        if (!player.characterLocomotionManager.isGrounded)
         {
             Vector3 freeFallDirection;
             freeFallDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
@@ -133,7 +139,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleRotation()
     {
-        if (!player.canRotate || player.isDead.Value)
+        if (!player.characterLocomotionManager.canRotate || player.isDead.Value)
             return;
 
         if (player.playerNetworkManager.isLockedOn.Value)
@@ -251,7 +257,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     public void AttemptJump()
     {
-        if (player.isPerformingAction || player.playerNetworkManager.currentStamina.Value <= 0 || player.characterNetworkManager.isJumping.Value || !player.isGrounded)
+        if (player.isPerformingAction || player.playerNetworkManager.currentStamina.Value <= 0 || player.characterNetworkManager.isJumping.Value || !player.playerLocomotionManager.isGrounded)
             return;
 
         player.playerAnimationManager.PlayTargetAnimation("Jump Start", false);

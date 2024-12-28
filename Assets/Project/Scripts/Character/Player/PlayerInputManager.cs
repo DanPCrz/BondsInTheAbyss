@@ -186,11 +186,18 @@ public class PlayerInputManager : MonoBehaviour
 
         if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)
         {
-            player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
+            if (WorldUtilityManager.instance.CanIBeDowned(player.characterGroup))
+                player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
+            else
+                player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value, player.isDead.Value);
+
         }
         else
         {
-            player.playerAnimationManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
+            if (WorldUtilityManager.instance.CanIBeDowned(player.characterGroup))
+                player.playerAnimationManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value, player.isDowned.Value);
+            else
+                player.playerAnimationManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value, player.isDead.Value);
         }
     }
 

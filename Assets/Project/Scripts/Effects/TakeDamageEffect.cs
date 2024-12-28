@@ -38,7 +38,7 @@ public class TakeDamageEffect : InstantCharacterEffect
     {
         base.ProcessInstantEffect(character);
 
-        if (character.isDowned.Value)
+        if (character.isDead.Value)
             return;
         CalculateDamage(character);
         PlayDirectionalBasedDamageAnimation(character);
@@ -81,7 +81,7 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     private void PlayDirectionalBasedDamageAnimation(CharacterManager character)
     {
-        if (!character.IsOwner || character.isDowned.Value)
+        if (!character.IsOwner || character.isDowned.Value || character.isDead.Value)
             return;
 
         poiseIsBroken = true;

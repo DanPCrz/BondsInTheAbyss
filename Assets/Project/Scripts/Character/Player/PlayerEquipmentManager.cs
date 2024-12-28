@@ -195,27 +195,23 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         }
     }
 
-    public void OpenDamageCollider()
+    public void OpenRightHandDamageCollider()
     {
-        if (player.playerNetworkManager.isUsingRightHand.Value)
-        {
-            rightWeaponManager.meleeDamageCollider.EnableDamageCollider();
-        }
-        else if (player.playerNetworkManager.isUsingLeftHand.Value)
-        {
-            leftWeaponManager.meleeDamageCollider.EnableDamageCollider();
-        }
+        rightWeaponManager.meleeDamageCollider.EnableDamageCollider();
     }
 
-    public void CloseDamageCollider()
+    public void CloseRightHandDamageCollider()
     {
-        if (player.playerNetworkManager.isUsingRightHand.Value)
-        {
-            rightWeaponManager.meleeDamageCollider.DisableDamageCollider();
-        }
-        else if (player.playerNetworkManager.isUsingLeftHand.Value)
-        {
-            leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
-        }
+        rightWeaponManager.meleeDamageCollider.DisableDamageCollider();
+    }
+
+    public void OpenLeftHandDamageCollider()
+    {
+        leftWeaponManager.meleeDamageCollider.EnableDamageCollider();
+    }
+
+    public void CloseLeftHandDamageCollider()
+    {
+        leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
     }
 }

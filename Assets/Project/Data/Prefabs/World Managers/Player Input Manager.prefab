@@ -52,6 +52,8 @@ MonoBehaviour:
   dodgeInput: 0
   sprintInput: 0
   jumpInput: 0
+  switchRightWeaponInput: 0
+  switchLeftWeaponInput: 0
   rbInput: 0
   rtInput: 0
   rtHoldInput: 0

@@ -13,12 +13,21 @@ public class PlayerHUDManager : MonoBehaviour
     [SerializeField] Image itemQuickSlot;
     [SerializeField] Image abilityQuickSlot;
 
+    [Header("Player Auras")]
+    [SerializeField] PlayerAurasUI playerAurasUI;
+
+
     public void RefreshHUD() 
     {
         healthBar.gameObject.SetActive(false);
         healthBar.gameObject.SetActive(true);
         staminaBar.gameObject.SetActive(false);
         staminaBar.gameObject.SetActive(true);
+    }
+
+    public void SetNewAuraValue(int oldAuras, int newAuras)
+    {
+        playerAurasUI.SetStat(newAuras);
     }
     public void SetNewStaminaValue(float oldStamina, float newStamina)
     {
@@ -85,4 +94,6 @@ public class PlayerHUDManager : MonoBehaviour
         rightWeaponQuickSlot.sprite = weapon.itemIcon;
         rightWeaponQuickSlot.enabled = true;
     }
+
+
 }

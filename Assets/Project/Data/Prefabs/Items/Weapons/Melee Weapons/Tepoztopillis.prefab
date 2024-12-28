@@ -416,8 +416,8 @@ Transform:
   m_GameObject: {fileID: 2078973118595736402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3316, y: 0.4558, z: 0}
-  m_LocalScale: {x: 0.32578167, y: 0.18234386, z: 0.06692794}
+  m_LocalPosition: {x: 0.294, y: 0.456, z: -0}
+  m_LocalScale: {x: 0.63514394, y: 0.2576701, z: 0.099562004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6757546056669240784}
@@ -460,8 +460,15 @@ MonoBehaviour:
   fireDamage: 0
   lightningDamage: 0
   poisonDamage: 0
+  poiseDamage: 0
   characterCausingDamage: {fileID: 0}
   lightAttack1Modifier: 0
+  lightAttack2Modifier: 0
+  lightAttack3Modifier: 0
+  heavyAttack1Modifier: 0
+  heavyAttack2Modifier: 0
+  chargedAttack1Modifier: 0
+  chargedAttack2Modifier: 0
 --- !u!1 &2083479210134232688
 GameObject:
   m_ObjectHideFlags: 0
